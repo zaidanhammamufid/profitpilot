@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #3b82f6, #172554, #000000);
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.left-panel {
+    width: 45%;
+    background: linear-gradient(135deg, #054be3, #07dbbc);
+    color: black;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left-panel h1 {
+    font-size: 50px;
+    margin-bottom: 1px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.left-panel h1 span {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.left-panel p {
+    line-height: 1.6;
+    color: #eee;
+    font-size: 16px;
+}
+
+.img-logo {
+    padding: 1px;
+}
+
+.right-panel {
+    width: 55%;
+    padding: 50px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-panel h2 {
+    font-size: 30px;
+    color: #222;
+}
+
+.subtitle {
+    color: #777;
+    margin-top: 8px;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2563EB;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 7px;
+    background: #2563EB;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2563EB;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 18px;
+    color: #777;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+
+    .signup-container {
+        width: 90%;
+        height: auto;
+        flex-direction: column;
+    }
+    .left-panel,
+    .right-panel {
+        width: 100%;
+    }
+    .left-panel {
+        padding: 40px;
+    }
+    .right-panel {
+        padding: 40px;
+    }
+}

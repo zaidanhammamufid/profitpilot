@@ -1,0 +1,608 @@
+
+/* ========================================
+   PROFITPILOT - HALAMAN TRANSAKSI
+   Tema: Royal Blue + Cyan
+   Menggunakan style utama dashboard.css
+======================================== */
+
+@import url("./dashboard.css");
+
+/* FORM TRANSAKSI */
+.form-card,
+.transaction {
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 28px;
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.section-header h2 {
+    margin: 0 0 7px;
+    color: var(--navy);
+    font-size: 19px;
+}
+
+.section-header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.section-icon,
+.product-heading-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    color: #1D4F91;
+    background: #DBEAFE;
+    font-size: 22px;
+}
+
+/* INPUT FORM */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    margin-bottom: 19px;
+}
+
+.form-group label {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-group label span {
+    color: var(--red);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    min-height: 45px;
+    padding: 11px 13px;
+    border: 1px solid #CBD5E1;
+    border-radius: 9px;
+    outline: none;
+    color: var(--text);
+    background: var(--white);
+    font-size: 13px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.12);
+}
+
+.form-group input:disabled {
+    color: var(--muted);
+    background: #F1F5F9;
+    cursor: not-allowed;
+}
+
+.form-group input::placeholder {
+    color: #94A3B8;
+}
+
+.form-group small {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* PILIH BARANG */
+.product-section {
+    margin-bottom: 22px;
+    padding: 20px;
+    border: 1px solid #BFDBFE;
+    border-radius: 13px;
+    background: #F8FAFC;
+}
+
+.product-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.product-heading h3 {
+    margin: 0 0 7px;
+    color: var(--navy);
+    font-size: 16px;
+}
+
+.product-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* BARIS ITEM DINAMIS */
+.item-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--white);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-row:hover {
+    border-color: #93C5FD;
+    box-shadow: 0 4px 12px rgba(37, 99, 166, 0.06);
+}
+
+.item-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(90px, 0.7fr);
+    gap: 12px;
+    min-width: 0;
+}
+
+.item-row .form-group {
+    margin-bottom: 0;
+}
+
+.item-subtotal {
+    grid-column: 1 / -1;
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* TOMBOL TAMBAH DAN HAPUS ITEM */
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 41px;
+    padding: 10px 15px;
+    border: 1px solid #A5F3FC;
+    border-radius: 9px;
+    color: #0E7490;
+    background: #ECFEFF;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.secondary-button:hover {
+    background: #CFFAFE;
+}
+
+.remove-item {
+    min-height: 38px;
+    padding: 9px 12px;
+    border: 1px solid #FECACA;
+    border-radius: 8px;
+    color: #B91C1C;
+    background: #FEF2F2;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background 0.2s ease;
+}
+
+.remove-item:hover {
+    background: #FEE2E2;
+}
+
+/* TOTAL TRANSAKSI */
+.total-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 18px;
+    padding: 17px;
+    border: 1px solid #93C5FD;
+    border-radius: 10px;
+    color: var(--navy);
+    background: #EFF6FF;
+}
+
+.total-box span {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.total-box strong {
+    font-size: 20px;
+    overflow-wrap: anywhere;
+}
+
+/* TOMBOL FORM */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 7px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.primary-button,
+.reset-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 11px 16px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.primary-button {
+    border: 1px solid var(--navy);
+    color: var(--white);
+    background: var(--navy);
+}
+
+.primary-button:hover {
+    border-color: var(--navy-light);
+    background: var(--navy-light);
+}
+
+.reset-button {
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--white);
+}
+
+.reset-button:hover {
+    color: var(--text);
+    background: #F1F5F9;
+}
+
+/* RIWAYAT TRANSAKSI */
+.history-count {
+    padding: 7px 11px;
+    border-radius: 20px;
+    color: #1D4F91;
+    background: #DBEAFE;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table-wrapper thead {
+    background: #F8FAFC;
+}
+
+.table-wrapper th {
+    padding: 14px 15px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.table-wrapper td {
+    padding: 16px 15px;
+    border-bottom: 1px solid #EDF2F7;
+    color: var(--text);
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.table-wrapper tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.table-wrapper tbody tr:hover td {
+    background: #F8FAFC;
+}
+
+.date-cell {
+    white-space: nowrap;
+}
+
+.product-cell {
+    min-width: 130px;
+}
+
+.history-product {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.history-product:last-child {
+    margin-bottom: 0;
+}
+
+.history-product span {
+    overflow-wrap: anywhere;
+}
+
+.history-product small {
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.transaction-description {
+    min-width: 150px;
+    overflow-wrap: anywhere;
+}
+
+.transaction-type,
+.status-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.jenis-pemasukan,
+.status-aktif {
+    color: #047857;
+    background: #D1FAE5;
+}
+
+.jenis-pengeluaran,
+.status-batal {
+    color: #B91C1C;
+    background: #FEE2E2;
+}
+
+.transaction-amount {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.action-cell form {
+    margin: 0;
+}
+
+.cancel-button {
+    padding: 8px 11px;
+    border: 1px solid #FECACA;
+    border-radius: 8px;
+    color: #B91C1C;
+    background: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+}
+
+.cancel-button:hover {
+    background: #FEF2F2;
+}
+
+.muted-cell {
+    color: #94A3B8;
+}
+
+/* TAMPILAN KETIKA BELUM ADA TRANSAKSI */
+.empty {
+    padding: 35px 15px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.empty span,
+.empty strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.empty .empty-icon {
+    color: #94A3B8;
+    font-size: 28px;
+}
+
+.empty strong {
+    color: var(--text);
+    font-size: 14px;
+}
+
+.empty span:last-child {
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+/* ALERT */
+.alert {
+    margin-bottom: 22px;
+    padding: 15px 18px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.alert p {
+    margin: 0;
+}
+
+.alert-success {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-color: #A7F3D0;
+    color: #065F46;
+    background: #ECFDF5;
+}
+
+.alert-success > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    color: var(--white);
+    background: var(--green);
+    font-weight: 700;
+}
+
+.alert-error {
+    border-color: #FECACA;
+    color: #991B1B;
+    background: #FEF2F2;
+}
+
+.alert-error strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.alert-error ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* RESPONSIVE TABLET */
+@media (max-width: 1100px) {
+    .form-card,
+    .transaction {
+        padding: 20px;
+    }
+
+    .item-fields {
+        grid-template-columns: minmax(0, 1.2fr) minmax(85px, 0.8fr);
+    }
+}
+
+/* RESPONSIVE HP */
+@media (max-width: 560px) {
+    .form-card,
+    .transaction {
+        padding: 17px 13px;
+        border-radius: 13px;
+    }
+
+    .section-header {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .section-header h2 {
+        font-size: 18px;
+    }
+
+    .section-header p {
+        font-size: 12px;
+    }
+
+    .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+
+    .product-section {
+        padding: 13px;
+    }
+
+    .product-heading {
+        align-items: flex-start;
+    }
+
+    .product-heading h3 {
+        font-size: 15px;
+    }
+
+    .item-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .item-fields {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+
+    .remove-item {
+        width: 100%;
+    }
+
+    .total-box {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .total-box strong {
+        font-size: 19px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+
+    .history-count {
+        font-size: 10px;
+    }
+
+    .table-wrapper th,
+    .table-wrapper td {
+        padding: 12px 10px;
+    }
+
+    .transaction-amount {
+        white-space: nowrap;
+    }
+}

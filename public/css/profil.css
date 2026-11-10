@@ -1,0 +1,518 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #F8FAFC;
+    color: #1E293B;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 230px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #2563A6, #1D4F91);
+    color: white;
+    padding: 25px 20px;
+    flex-shrink: 0;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 45px;
+}
+
+.logo span {
+    color: #A5F3FC;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar nav a {
+    text-decoration: none;
+    color: white;
+    padding: 13px 15px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.logout-form {
+    margin-top: 40px;
+}
+
+.logout {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.logout:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+    flex: 1;
+    padding: 40px;
+    min-width: 0;
+}
+
+.content header {
+    margin-bottom: 30px;
+}
+
+.content h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.content header p {
+    color: #64748B;
+}
+
+
+/* =========================
+   PROFILE CARD
+========================= */
+
+.profile-card {
+    background: white;
+    width: 100%;
+    max-width: 650px;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(37, 99, 166, 0.06);
+}
+
+.profile-icon {
+    width: 70px;
+    height: 70px;
+    background: #DBEAFE;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.profile-card h2 {
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   PROFILE INFO
+========================= */
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.info-item span {
+    color: #64748B;
+}
+
+.info-item strong {
+    color: #1E293B;
+    text-align: right;
+    word-break: break-word;
+}
+
+
+/* =========================
+   PROFILE BUTTONS
+========================= */
+
+.profile-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.profile-buttons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+
+/* EDIT PROFIL */
+
+.edit-button {
+    background: #2563A6;
+    color: white;
+}
+
+.edit-button:hover {
+    background: #1D4F91;
+}
+
+
+/* KEMBALI */
+
+.back-button {
+    background: #DBEAFE;
+    color: #1D4F91;
+}
+
+.back-button:hover {
+    background: #BFDBFE;
+}
+
+
+/* =========================
+   EDIT PROFIL
+========================= */
+
+.edit-group {
+    margin-bottom: 20px;
+}
+
+.edit-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.edit-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.edit-group input:focus {
+    border-color: #06B6D4;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.12);
+}
+
+.edit-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.edit-buttons a,
+.edit-buttons button {
+    min-width: 150px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+/* CANCEL */
+
+.cancel-button {
+    background: #DBEAFE;
+    color: #1D4F91;
+    text-decoration: none;
+    border: none;
+}
+
+.cancel-button:hover {
+    background: #BFDBFE;
+}
+
+
+/* SAVE */
+
+.save-button {
+    background: #2563A6;
+    color: white;
+    border: none;
+}
+
+.save-button:hover {
+    background: #1D4F91;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-message {
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    background: #FEF2F2;
+    border-radius: 8px;
+}
+
+.error-message p {
+    margin: 4px 0;
+    color: #DC2626;
+}
+
+
+/* =========================
+   MOBILE BOTTOM NAV
+========================= */
+
+.mobile-bottom-nav {
+    display: none;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .content {
+        padding: 30px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding-bottom: 75px;
+    }
+
+
+    /* SIDEBAR DISEMBUNYIKAN */
+
+    .sidebar {
+        display: none;
+    }
+
+
+    /* CONTENT */
+
+    .content {
+        width: 100%;
+        padding: 25px 18px;
+    }
+
+    .content h1 {
+        font-size: 26px;
+    }
+
+    .content header {
+        margin-bottom: 22px;
+    }
+
+    .content header p {
+        font-size: 14px;
+    }
+
+
+    /* PROFILE CARD */
+
+    .profile-card {
+        max-width: none;
+        padding: 22px;
+        border-radius: 12px;
+    }
+
+    .profile-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+    }
+
+    .profile-card h2 {
+        font-size: 21px;
+        margin-bottom: 25px;
+    }
+
+
+    /* INFO */
+
+    .info-item {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+        padding: 13px 0;
+    }
+
+    .info-item strong {
+        text-align: left;
+    }
+
+
+    /* BUTTON */
+
+    .profile-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .profile-buttons a {
+        width: 100%;
+    }
+
+
+    /* EDIT BUTTON */
+
+    .edit-buttons {
+        flex-direction: column;
+    }
+
+    .edit-buttons a,
+    .edit-buttons button {
+        width: 100%;
+    }
+
+
+    /* BOTTOM NAV */
+
+    .mobile-bottom-nav {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 68px;
+        background: white;
+        border-top: 1px solid #E2E8F0;
+        box-shadow: 0 -3px 15px rgba(37, 99, 166, 0.08);
+        z-index: 999;
+    }
+
+    .mobile-bottom-nav a {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        text-decoration: none;
+        color: #64748B;
+        font-size: 18px;
+        transition: 0.2s;
+    }
+
+    .mobile-bottom-nav a small {
+        font-size: 10px;
+        font-weight: 600;
+    }
+
+    .mobile-bottom-nav a.active {
+        color: #2563A6;
+    }
+
+    .mobile-bottom-nav a:hover {
+        color: #2563A6;
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 400px) {
+
+    .content {
+        padding: 20px 14px;
+    }
+
+    .profile-card {
+        padding: 18px;
+    }
+
+    .content h1 {
+        font-size: 24px;
+    }
+
+    .profile-card h2 {
+        font-size: 19px;
+    }
+
+    .mobile-bottom-nav {
+        height: 65px;
+    }
+
+    .mobile-bottom-nav a {
+        font-size: 17px;
+    }
+
+    .mobile-bottom-nav a small {
+        font-size: 9px;
+    }
+
+}
