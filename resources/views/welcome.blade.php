@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#2563A6">
-
     <title>Welcome - ProfitPilot</title>
-
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
     <nav class="navbar">
-
         <a href="/" class="brand">
             <div class="logo">
                 <svg width="29" height="29" viewBox="0 0 64 64" fill="none">
@@ -38,14 +34,9 @@
 
     </nav>
 
-
-    <!-- HERO -->
     <main>
-
         <section class="hero">
-
             <div class="hero-content">
-
                 <div class="hero-label">
                     <span class="label-dot"></span>
                     Aplikasi Pengelolaan Keuangan Usaha
@@ -63,10 +54,8 @@
                 </p>
 
                 <div class="hero-buttons">
-
                     <a href="{{ route('signup') }}" class="button-primary">
                         Mulai Sekarang
-
                         <svg width="18" height="18" viewBox="0 0 24 24"
                              fill="none" stroke="currentColor"
                              stroke-width="2" stroke-linecap="round"
@@ -81,11 +70,8 @@
                     </a>
 
                 </div>
-
             </div>
 
-
-            <!-- ILUSTRASI DASHBOARD -->
             <div class="hero-visual">
 
                 <div class="visual-decoration"></div>
@@ -136,8 +122,6 @@
 
         </section>
 
-
-        <!-- FITUR -->
         <section class="features">
 
             <h2>Fitur ProfitPilot</h2>
@@ -149,7 +133,6 @@
 
             <div class="feature-grid">
 
-                <!-- FITUR TRANSAKSI -->
                 <div class="feature-card">
 
                     <div class="feature-icon">
@@ -171,8 +154,6 @@
 
                 </div>
 
-
-                <!-- FITUR BARANG -->
                 <div class="feature-card">
 
                     <div class="feature-icon">
@@ -195,8 +176,6 @@
 
                 </div>
 
-
-                <!-- FITUR OMZET -->
                 <div class="feature-card">
 
                     <div class="feature-icon">
@@ -224,8 +203,6 @@
 
     </main>
 
-
-    <!-- FOOTER -->
     <footer>
         © {{ date('Y') }} ProfitPilot. Aplikasi Pengelolaan Keuangan Usaha.
         <br>

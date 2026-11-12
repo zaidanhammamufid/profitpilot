@@ -5,15 +5,15 @@
 }
 
 :root {
-    --navy: #2563A6;
-    --navy-light: #1D4F91;
-    --cyan: #06B6D4;
-    --cyan-light: #A5F3FC;
-    --bg: #F8FAFC;
-    --text: #1E293B;
-    --muted: #64748B;
-    --border: #E2E8F0;
-    --white: #FFFFFF;
+    --navy: #2563a6;
+    --navy-light: #1d4f91;
+    --cyan: #06b6d4;
+    --cyan-light: #a5f3fc;
+    --bg: #f8fafc;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --white: #ffffff;
 }
 
 body {
@@ -23,18 +23,10 @@ body {
     overflow-x: hidden;
 }
 
-/* =========================
-   CONTAINER
-========================= */
-
 .container {
     display: flex;
     min-height: 100vh;
 }
-
-/* =========================
-   SIDEBAR
-========================= */
 
 .sidebar {
     width: 260px;
@@ -45,7 +37,9 @@ body {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    transition: width 0.25s ease, transform 0.25s ease;
+    transition:
+        width 0.25s ease,
+        transform 0.25s ease;
 }
 
 .brand {
@@ -87,7 +81,7 @@ body {
 }
 
 .menu-label {
-    color: #DBEAFE;
+    color: #dbeafe;
     font-size: 10px;
     font-weight: bold;
     letter-spacing: 1.2px;
@@ -111,7 +105,7 @@ body {
     border: none;
     border-radius: 9px;
     background: transparent;
-    color: #E0F2FE;
+    color: #e0f2fe;
     text-decoration: none;
     font-size: 13px;
     cursor: pointer;
@@ -127,7 +121,7 @@ body {
 
 .menu-link:hover,
 .logout-link:hover {
-    background: rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.12);
     color: var(--white);
 }
 
@@ -145,10 +139,6 @@ body {
 .sidebar-bottom form {
     width: 100%;
 }
-
-/* =========================
-   CONTENT
-========================= */
 
 .content {
     flex: 1;
@@ -206,10 +196,6 @@ body {
     height: 21px;
 }
 
-/* =========================
-   PAGE INTRO
-========================= */
-
 .page-intro {
     margin-bottom: 25px;
 }
@@ -226,16 +212,12 @@ body {
     line-height: 1.6;
 }
 
-/* =========================
-   TABLE CARD
-========================= */
-
 .table-card {
     background: var(--white);
     padding: 25px;
     border: 1px solid var(--border);
     border-radius: 13px;
-    box-shadow: 0 3px 12px rgba(37, 99, 166, 0.10);
+    box-shadow: 0 3px 12px rgba(37, 99, 166, 0.1);
 }
 
 .table-heading {
@@ -253,10 +235,6 @@ body {
     font-size: 12px;
 }
 
-/* =========================
-   TABLE
-========================= */
-
 .table-responsive {
     width: 100%;
     overflow-x: auto;
@@ -269,7 +247,7 @@ table {
 }
 
 thead {
-    background: #EFF6FF;
+    background: #eff6ff;
 }
 
 th {
@@ -294,7 +272,7 @@ tbody tr:last-child td {
 }
 
 tbody tr:hover {
-    background: #F8FAFC;
+    background: #f8fafc;
 }
 
 .nama-toko {
@@ -307,10 +285,6 @@ tbody tr:hover {
     padding: 30px;
     color: var(--muted);
 }
-
-/* =========================
-   PASSWORD
-========================= */
 
 .password-cell {
     display: flex;
@@ -328,7 +302,7 @@ tbody tr:hover {
     height: 31px;
     border: 1px solid var(--border);
     border-radius: 7px;
-    background: #F8FAFC;
+    background: #f8fafc;
     color: var(--navy-light);
     cursor: pointer;
     display: flex;
@@ -339,18 +313,14 @@ tbody tr:hover {
 
 .password-button:hover,
 .password-button.password-visible {
-    background: #CFFAFE;
-    color: #0891B2;
+    background: #cffafe;
+    color: #0891b2;
 }
 
 .eye-icon {
     width: 17px;
     height: 17px;
 }
-
-/* =========================
-   ACTION BUTTONS
-========================= */
 
 .action-buttons {
     display: flex;
@@ -376,39 +346,35 @@ tbody tr:hover {
 }
 
 .detail-button {
-    background: #DBEAFE;
-    color: #1D4F91;
+    background: #dbeafe;
+    color: #1d4f91;
 }
 
 .detail-button:hover {
-    background: #BFDBFE;
+    background: #bfdbfe;
 }
 
 .edit-button {
-    background: #FEF3C7;
-    color: #92400E;
+    background: #fef3c7;
+    color: #92400e;
 }
 
 .edit-button:hover {
-    background: #FDE68A;
+    background: #fde68a;
 }
 
 .delete-button {
-    background: #FEE2E2;
-    color: #B91C1C;
+    background: #fee2e2;
+    color: #b91c1c;
 }
 
 .delete-button:hover {
-    background: #FECACA;
+    background: #fecaca;
 }
 
 .action-buttons form {
     margin: 0;
 }
-
-/* =========================
-   SIDEBAR COLLAPSE DESKTOP
-========================= */
 
 body.sidebar-collapsed .sidebar {
     width: 82px;
@@ -442,20 +408,11 @@ body.sidebar-collapsed .content {
     min-width: 0;
 }
 
-/* =========================
-   OVERLAY
-========================= */
-
 .sidebar-overlay {
     display: none;
 }
 
-/* =========================
-   MOBILE
-========================= */
-
 @media (max-width: 768px) {
-
     .container {
         display: block;
         min-height: 100vh;
@@ -488,7 +445,7 @@ body.sidebar-collapsed .content {
         width: 34px;
         height: 34px;
         margin-left: auto;
-        background: rgba(255,255,255,0.12);
+        background: rgba(255, 255, 255, 0.12);
         border: none;
         border-radius: 8px;
         color: var(--white);

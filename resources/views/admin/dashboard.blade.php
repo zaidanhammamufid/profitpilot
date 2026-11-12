@@ -171,18 +171,18 @@
 </div>
 
 <script>
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
 
-    if (window.innerWidth <= 768) {
-        sidebar.classList.toggle('show');
-        overlay.classList.toggle('active');
-        document.body.classList.toggle('sidebar-open');
-    } else {
-        document.body.classList.toggle('sidebar-collapsed');
+        if (window.innerWidth <= 768) {
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('active');
+            document.body.classList.toggle('sidebar-open');
+        } else {
+            document.body.classList.toggle('sidebar-collapsed');
+        }
     }
-}
 </script>
 </body>
 </html>

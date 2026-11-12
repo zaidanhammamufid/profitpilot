@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -240,33 +239,33 @@
 </div>
 
 <script>
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
 
-    if (window.innerWidth <= 768) {
-        sidebar.classList.toggle('show');
-        overlay.classList.toggle('active');
-        document.body.classList.toggle('sidebar-open');
-    } else {
-        document.body.classList.toggle('sidebar-collapsed');
+        if (window.innerWidth <= 768) {
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('active');
+            document.body.classList.toggle('sidebar-open');
+        } else {
+            document.body.classList.toggle('sidebar-collapsed');
+        }
     }
-}
 
-function lihatPassword(id) {
-    const password = document.getElementById('password-' + id);
-    const button = document.getElementById('button-' + id);
+    function lihatPassword(id) {
+        const password = document.getElementById('password-' + id);
+        const button = document.getElementById('button-' + id);
 
-    if (password.textContent.trim() === '••••••••') {
-        password.textContent = password.dataset.password;
-        button.classList.add('password-visible');
-        button.setAttribute('aria-label', 'Sembunyikan password');
-    } else {
-        password.textContent = '••••••••';
-        button.classList.remove('password-visible');
-        button.setAttribute('aria-label', 'Lihat password');
+        if (password.textContent.trim() === '••••••••') {
+            password.textContent = password.dataset.password;
+            button.classList.add('password-visible');
+            button.setAttribute('aria-label', 'Sembunyikan password');
+        } else {
+            password.textContent = '••••••••';
+            button.classList.remove('password-visible');
+            button.setAttribute('aria-label', 'Lihat password');
+        }
     }
-}
 </script>
 
 </body>

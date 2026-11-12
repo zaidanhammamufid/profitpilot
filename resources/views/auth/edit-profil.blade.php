@@ -13,7 +13,6 @@
 
 <div class="container">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
 
         <div class="sidebar-brand">
@@ -144,10 +143,8 @@
         </div>
     </aside>
 
-    <!-- CONTENT -->
     <main class="content">
 
-        <!-- TOPBAR -->
         <header class="topbar">
             <div class="topbar-left">
                 <button type="button" class="menu-toggle"
@@ -192,7 +189,6 @@
             </div>
         </header>
 
-        <!-- PAGE HEADING -->
         <section class="page-heading">
             <div>
                 <span class="eyebrow">PENGATURAN AKUN</span>
@@ -201,7 +197,6 @@
             </div>
         </section>
 
-        <!-- ERROR MESSAGE -->
         @if ($errors->any())
             <div class="error-message">
                 <svg viewBox="0 0 24 24" width="20" height="20"
@@ -215,7 +210,6 @@
             </div>
         @endif
 
-        <!-- FORM EDIT PROFIL -->
         <section class="form-card">
 
             <div class="section-heading">
@@ -308,7 +302,6 @@
     </main>
 </div>
 
-<!-- NAVIGASI BAWAH MOBILE -->
 <nav class="mobile-bottom-nav">
 
     <a href="{{ url('/dashboard') }}"
@@ -363,59 +356,59 @@
 </nav>
 
 <script>
-function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("sidebarOverlay");
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
 
-    if (!sidebar) return;
+        if (!sidebar) return;
 
-    if (window.innerWidth <= 850) {
-        const isOpen = sidebar.classList.toggle("open");
+        if (window.innerWidth <= 850) {
+            const isOpen = sidebar.classList.toggle('open');
 
-        if (overlay) {
-            overlay.classList.toggle("show", isOpen);
-        }
-    } else {
-        document.body.classList.toggle("sidebar-collapsed");
-    }
-}
-
-function toggleAccount() {
-    const menu = document.getElementById("accountMenu");
-    const button = document.querySelector(".account-button");
-
-    if (!menu || !button) return;
-
-    const isOpen = menu.classList.toggle("show");
-    button.setAttribute("aria-expanded", isOpen);
-}
-
-document.addEventListener("click", function(event) {
-    const account = document.querySelector(".account");
-    const menu = document.getElementById("accountMenu");
-    const button = document.querySelector(".account-button");
-
-    if (account && !account.contains(event.target) && menu) {
-        menu.classList.remove("show");
-
-        if (button) {
-            button.setAttribute("aria-expanded", "false");
+            if (overlay) {
+                overlay.classList.toggle('show', isOpen);
+            }
+        } else {
+            document.body.classList.toggle('sidebar-collapsed');
         }
     }
-});
 
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-        const menu = document.getElementById("accountMenu");
-        const button = document.querySelector(".account-button");
+    function toggleAccount() {
+        const menu = document.getElementById('accountMenu');
+        const button = document.querySelector('.account-button');
 
-        if (menu) menu.classList.remove("show");
+        if (!menu || !button) return;
 
-        if (button) {
-            button.setAttribute("aria-expanded", "false");
-        }
+        const isOpen = menu.classList.toggle('show');
+        button.setAttribute('aria-expanded', isOpen);
     }
-});
+
+    document.addEventListener('click', function (event) {
+        const account = document.querySelector('.account');
+        const menu = document.getElementById('accountMenu');
+        const button = document.querySelector('.account-button');
+
+        if (account && !account.contains(event.target) && menu) {
+            menu.classList.remove('show');
+
+            if (button) {
+                button.setAttribute('aria-expanded', 'false');
+            }
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            const menu = document.getElementById('accountMenu');
+            const button = document.querySelector('.account-button');
+
+            if (menu) menu.classList.remove('show');
+
+            if (button) {
+                button.setAttribute('aria-expanded', 'false');
+            }
+        }
+    });
 </script>
 
 </body>

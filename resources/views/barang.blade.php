@@ -536,7 +536,6 @@
     </main>
 </div>
 
-<!-- MODAL RESTOK -->
 <div class="modal-overlay" id="modalRestok" style="display:none;">
     <div class="modal-card" role="dialog" aria-modal="true"
          aria-labelledby="judulModalRestok">
@@ -602,7 +601,7 @@
         </form>
     </div>
 </div>
-<!-- NAVIGASI BAWAH MOBILE -->
+
 <nav class="mobile-bottom-nav">
     <a href="{{ url('/dashboard') }}"
        class="{{ request()->is('dashboard') ? 'active' : '' }}">
@@ -655,152 +654,144 @@
 </nav>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("sidebarOverlay");
-    const accountMenu = document.getElementById("accountMenu");
-    const accountButton = document.querySelector(".account-button");
-    const modalRestok = document.getElementById("modalRestok");
-    const formRestok = document.getElementById("formRestok");
+    document.addEventListener('DOMContentLoaded', function () {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const accountMenu = document.getElementById('accountMenu');
+        const accountButton = document.querySelector('.account-button');
+        const modalRestok = document.getElementById('modalRestok');
+        const formRestok = document.getElementById('formRestok');
 
-    // Buka/tutup sidebar pada HP dan lipat sidebar pada desktop.
-    window.toggleSidebar = function () {
-        if (!sidebar) return;
+        window.toggleSidebar = function () {
+            if (!sidebar) return;
 
-        if (window.innerWidth <= 850) {
-            const isOpen = sidebar.classList.toggle("open");
+            if (window.innerWidth <= 850) {
+                const isOpen = sidebar.classList.toggle('open');
 
-            if (overlay) {
-                overlay.classList.toggle("show", isOpen);
+                if (overlay) {
+                    overlay.classList.toggle('show', isOpen);
+                }
+            } else {
+                document.body.classList.toggle('sidebar-collapsed');
             }
-        } else {
-            document.body.classList.toggle("sidebar-collapsed");
-        }
-    };
+        };
 
-    // Buka/tutup dropdown akun.
-    window.toggleAccount = function () {
-        if (!accountMenu || !accountButton) return;
+        window.toggleAccount = function () {
+            if (!accountMenu || !accountButton) return;
 
-        const isOpen = accountMenu.classList.toggle("show");
-        accountButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    };
+            const isOpen = accountMenu.classList.toggle('show');
+            accountButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        };
 
-    // Siapkan dan tampilkan modal restok.
-    window.bukaRestok = function (id, nama, stok) {
-        if (!modalRestok || !formRestok) return;
+        window.bukaRestok = function (id, nama, stok) {
+            if (!modalRestok || !formRestok) return;
 
-        const namaBarang = document.getElementById("namaBarangRestok");
-        const stokSaatIni = document.getElementById("stokSaatIni");
-        const jumlahRestok = document.getElementById("jumlahRestok");
-        const tanggalRestok = document.getElementById("tanggalRestok");
-        const keteranganRestok = document.getElementById("keteranganRestok");
+            const namaBarang = document.getElementById('namaBarangRestok');
+            const stokSaatIni = document.getElementById('stokSaatIni');
+            const jumlahRestok = document.getElementById('jumlahRestok');
+            const tanggalRestok = document.getElementById('tanggalRestok');
+            const keteranganRestok = document.getElementById('keteranganRestok');
 
-        if (namaBarang) namaBarang.textContent = nama;
-        if (stokSaatIni) stokSaatIni.textContent = stok;
-        if (jumlahRestok) jumlahRestok.value = "";
-        if (tanggalRestok && !tanggalRestok.value) {
-            tanggalRestok.value = new Date().toISOString().slice(0, 10);
-        }
-        if (keteranganRestok) keteranganRestok.value = "";
+            if (namaBarang) namaBarang.textContent = nama;
+            if (stokSaatIni) stokSaatIni.textContent = stok;
+            if (jumlahRestok) jumlahRestok.value = '';
+            if (tanggalRestok && !tanggalRestok.value) {
+                tanggalRestok.value = new Date().toISOString().slice(0, 10);
+            }
+            if (keteranganRestok) keteranganRestok.value = '';
 
-        formRestok.action = @json(url('/barang')) + "/" + encodeURIComponent(id) + "/restok";
-        modalRestok.style.display = "flex";
+            formRestok.action = @json(url('/barang')) + '/' + encodeURIComponent(id) + '/restok';
+            modalRestok.style.display = 'flex';
 
-        if (jumlahRestok) jumlahRestok.focus();
-    };
+            if (jumlahRestok) jumlahRestok.focus();
+        };
 
-    // Tutup modal restok.
-    window.tutupRestok = function () {
+        window.tutupRestok = function () {
+            if (modalRestok) {
+                modalRestok.style.display = 'none';
+            }
+        };
+
+        document.addEventListener('click', function (event) {
+            if (
+                accountMenu &&
+                accountButton &&
+                !accountMenu.contains(event.target) &&
+                !accountButton.contains(event.target)
+            ) {
+                accountMenu.classList.remove('show');
+                accountButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
         if (modalRestok) {
-            modalRestok.style.display = "none";
+            modalRestok.addEventListener('click', function (event) {
+                if (event.target === modalRestok) {
+                    window.tutupRestok();
+                }
+            });
         }
-    };
 
-    // Tutup dropdown ketika pengguna mengeklik area di luar dropdown.
-    document.addEventListener("click", function (event) {
-        if (
-            accountMenu &&
-            accountButton &&
-            !accountMenu.contains(event.target) &&
-            !accountButton.contains(event.target)
-        ) {
-            accountMenu.classList.remove("show");
-            accountButton.setAttribute("aria-expanded", "false");
-        }
-    });
-
-    // Tutup modal jika area gelap di luar kotak modal diklik.
-    if (modalRestok) {
-        modalRestok.addEventListener("click", function (event) {
-            if (event.target === modalRestok) {
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
                 window.tutupRestok();
+
+                if (accountMenu && accountButton) {
+                    accountMenu.classList.remove('show');
+                    accountButton.setAttribute('aria-expanded', 'false');
+                }
             }
         });
-    }
 
-    // Tombol Escape menutup modal dan dropdown.
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            window.tutupRestok();
+        const inputCari = document.getElementById('cariBarang');
+        const filterStok = document.getElementById('filterStok');
+        const tabelBarang = document.getElementById('daftarBarang');
+        const pesanTidakDitemukan = document.getElementById('tidakDitemukan');
 
-            if (accountMenu && accountButton) {
-                accountMenu.classList.remove("show");
-                accountButton.setAttribute("aria-expanded", "false");
+        function filterDaftarBarang() {
+            if (!tabelBarang) return;
+
+            const kataKunci = inputCari ? inputCari.value.trim().toLowerCase() : '';
+            const jenisFilter = filterStok ? filterStok.value : 'semua';
+            const baris = tabelBarang.querySelectorAll('tbody tr[data-stok]');
+            let jumlahTampil = 0;
+
+            baris.forEach(function (row) {
+                const nama = row.querySelector('.nama-barang');
+                const namaTeks = nama ? nama.textContent.toLowerCase() : '';
+                const stok = Number(row.dataset.stok || 0);
+
+                const cocokNama = namaTeks.includes(kataKunci);
+                let cocokStok = true;
+
+                if (jenisFilter === 'habis') {
+                    cocokStok = stok <= 0;
+                } else if (jenisFilter === 'rendah') {
+                    cocokStok = stok >= 1 && stok <= 5;
+                } else if (jenisFilter === 'tersedia') {
+                    cocokStok = stok > 5;
+                }
+
+                const tampil = cocokNama && cocokStok;
+                row.style.display = tampil ? '' : 'none';
+
+                if (tampil) jumlahTampil++;
+            });
+
+            if (pesanTidakDitemukan) {
+                pesanTidakDitemukan.style.display =
+                    baris.length > 0 && jumlahTampil === 0 ? 'block' : 'none';
             }
+        }
+
+        if (inputCari) {
+            inputCari.addEventListener('input', filterDaftarBarang);
+        }
+
+        if (filterStok) {
+            filterStok.addEventListener('change', filterDaftarBarang);
         }
     });
-
-    // Pencarian dan filter stok pada tabel barang.
-    const inputCari = document.getElementById("cariBarang");
-    const filterStok = document.getElementById("filterStok");
-    const tabelBarang = document.getElementById("daftarBarang");
-    const pesanTidakDitemukan = document.getElementById("tidakDitemukan");
-
-    function filterDaftarBarang() {
-        if (!tabelBarang) return;
-
-        const kataKunci = inputCari ? inputCari.value.trim().toLowerCase() : "";
-        const jenisFilter = filterStok ? filterStok.value : "semua";
-        const baris = tabelBarang.querySelectorAll("tbody tr[data-stok]");
-        let jumlahTampil = 0;
-
-        baris.forEach(function (row) {
-            const nama = row.querySelector(".nama-barang");
-            const namaTeks = nama ? nama.textContent.toLowerCase() : "";
-            const stok = Number(row.dataset.stok || 0);
-
-            const cocokNama = namaTeks.includes(kataKunci);
-            let cocokStok = true;
-
-            if (jenisFilter === "habis") {
-                cocokStok = stok <= 0;
-            } else if (jenisFilter === "rendah") {
-                cocokStok = stok >= 1 && stok <= 5;
-            } else if (jenisFilter === "tersedia") {
-                cocokStok = stok > 5;
-            }
-
-            const tampil = cocokNama && cocokStok;
-            row.style.display = tampil ? "" : "none";
-
-            if (tampil) jumlahTampil++;
-        });
-
-        if (pesanTidakDitemukan) {
-            pesanTidakDitemukan.style.display =
-                baris.length > 0 && jumlahTampil === 0 ? "block" : "none";
-        }
-    }
-
-    if (inputCari) {
-        inputCari.addEventListener("input", filterDaftarBarang);
-    }
-
-    if (filterStok) {
-        filterStok.addEventListener("change", filterDaftarBarang);
-    }
-});
 </script>
 
 </body>

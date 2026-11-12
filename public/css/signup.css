@@ -19,7 +19,7 @@ body {
     display: flex;
     background: white;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
 .left-panel {
@@ -89,7 +89,7 @@ input {
 }
 
 input:focus {
-    border-color: #2563EB;
+    border-color: #2563eb;
 }
 
 button {
@@ -97,7 +97,7 @@ button {
     padding: 13px;
     border: none;
     border-radius: 7px;
-    background: #2563EB;
+    background: #2563eb;
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -105,7 +105,7 @@ button {
 }
 
 button:hover {
-    background: #2563EB;
+    background: #2563eb;
 }
 
 .login-link {
@@ -116,7 +116,7 @@ button:hover {
 }
 
 .login-link a {
-    color: #2563EB;
+    color: #2563eb;
     text-decoration: none;
     font-weight: bold;
 }
@@ -126,7 +126,6 @@ button:hover {
 }
 
 @media (max-width: 700px) {
-
     .signup-container {
         width: 90%;
         height: auto;

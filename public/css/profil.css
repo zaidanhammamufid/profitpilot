@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -7,29 +6,19 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #F8FAFC;
-    color: #1E293B;
+    background: #f8fafc;
+    color: #1e293b;
 }
-
-
-/* =========================
-   CONTAINER
-========================= */
 
 .container {
     display: flex;
     min-height: 100vh;
 }
 
-
-/* =========================
-   SIDEBAR
-========================= */
-
 .sidebar {
     width: 230px;
     min-height: 100vh;
-    background: linear-gradient(180deg, #2563A6, #1D4F91);
+    background: linear-gradient(180deg, #2563a6, #1d4f91);
     color: white;
     padding: 25px 20px;
     flex-shrink: 0;
@@ -42,7 +31,7 @@ body {
 }
 
 .logo span {
-    color: #A5F3FC;
+    color: #a5f3fc;
 }
 
 .sidebar nav {
@@ -84,11 +73,6 @@ body {
     background: rgba(255, 255, 255, 0.22);
 }
 
-
-/* =========================
-   CONTENT
-========================= */
-
 .content {
     flex: 1;
     padding: 40px;
@@ -105,13 +89,8 @@ body {
 }
 
 .content header p {
-    color: #64748B;
+    color: #64748b;
 }
-
-
-/* =========================
-   PROFILE CARD
-========================= */
 
 .profile-card {
     background: white;
@@ -125,7 +104,7 @@ body {
 .profile-icon {
     width: 70px;
     height: 70px;
-    background: #DBEAFE;
+    background: #dbeafe;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -137,11 +116,6 @@ body {
 .profile-card h2 {
     margin-bottom: 30px;
 }
-
-
-/* =========================
-   PROFILE INFO
-========================= */
 
 .profile-info {
     display: flex;
@@ -155,23 +129,18 @@ body {
     align-items: center;
     gap: 20px;
     padding: 15px 0;
-    border-bottom: 1px solid #E2E8F0;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .info-item span {
-    color: #64748B;
+    color: #64748b;
 }
 
 .info-item strong {
-    color: #1E293B;
+    color: #1e293b;
     text-align: right;
     word-break: break-word;
 }
-
-
-/* =========================
-   PROFILE BUTTONS
-========================= */
 
 .profile-buttons {
     display: flex;
@@ -193,34 +162,23 @@ body {
     transition: 0.2s;
 }
 
-
-/* EDIT PROFIL */
-
 .edit-button {
-    background: #2563A6;
+    background: #2563a6;
     color: white;
 }
 
 .edit-button:hover {
-    background: #1D4F91;
+    background: #1d4f91;
 }
 
-
-/* KEMBALI */
-
 .back-button {
-    background: #DBEAFE;
-    color: #1D4F91;
+    background: #dbeafe;
+    color: #1d4f91;
 }
 
 .back-button:hover {
-    background: #BFDBFE;
+    background: #bfdbfe;
 }
-
-
-/* =========================
-   EDIT PROFIL
-========================= */
 
 .edit-group {
     margin-bottom: 20px;
@@ -237,7 +195,7 @@ body {
 .edit-group input {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid #E2E8F0;
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
     font-size: 15px;
     outline: none;
@@ -245,7 +203,7 @@ body {
 }
 
 .edit-group input:focus {
-    border-color: #06B6D4;
+    border-color: #06b6d4;
     box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.12);
 }
 
@@ -267,66 +225,44 @@ body {
     cursor: pointer;
 }
 
-
-/* CANCEL */
-
 .cancel-button {
-    background: #DBEAFE;
-    color: #1D4F91;
+    background: #dbeafe;
+    color: #1d4f91;
     text-decoration: none;
     border: none;
 }
 
 .cancel-button:hover {
-    background: #BFDBFE;
+    background: #bfdbfe;
 }
 
-
-/* SAVE */
-
 .save-button {
-    background: #2563A6;
+    background: #2563a6;
     color: white;
     border: none;
 }
 
 .save-button:hover {
-    background: #1D4F91;
+    background: #1d4f91;
 }
-
-
-/* =========================
-   ERROR
-========================= */
 
 .error-message {
     margin-bottom: 20px;
     padding: 12px 15px;
-    background: #FEF2F2;
+    background: #fef2f2;
     border-radius: 8px;
 }
 
 .error-message p {
     margin: 4px 0;
-    color: #DC2626;
+    color: #dc2626;
 }
-
-
-/* =========================
-   MOBILE BOTTOM NAV
-========================= */
 
 .mobile-bottom-nav {
     display: none;
 }
 
-
-/* =========================
-   TABLET
-========================= */
-
 @media (max-width: 900px) {
-
     .sidebar {
         width: 210px;
     }
@@ -334,29 +270,16 @@ body {
     .content {
         padding: 30px;
     }
-
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
 @media (max-width: 768px) {
-
     body {
         padding-bottom: 75px;
     }
 
-
-    /* SIDEBAR DISEMBUNYIKAN */
-
     .sidebar {
         display: none;
     }
-
-
-    /* CONTENT */
 
     .content {
         width: 100%;
@@ -375,9 +298,6 @@ body {
         font-size: 14px;
     }
 
-
-    /* PROFILE CARD */
-
     .profile-card {
         max-width: none;
         padding: 22px;
@@ -395,9 +315,6 @@ body {
         margin-bottom: 25px;
     }
 
-
-    /* INFO */
-
     .info-item {
         align-items: flex-start;
         flex-direction: column;
@@ -409,9 +326,6 @@ body {
         text-align: left;
     }
 
-
-    /* BUTTON */
-
     .profile-buttons {
         flex-direction: column;
         gap: 10px;
@@ -421,9 +335,6 @@ body {
         width: 100%;
     }
 
-
-    /* EDIT BUTTON */
-
     .edit-buttons {
         flex-direction: column;
     }
@@ -432,9 +343,6 @@ body {
     .edit-buttons button {
         width: 100%;
     }
-
-
-    /* BOTTOM NAV */
 
     .mobile-bottom-nav {
         position: fixed;
@@ -446,7 +354,7 @@ body {
         bottom: 0;
         height: 68px;
         background: white;
-        border-top: 1px solid #E2E8F0;
+        border-top: 1px solid #e2e8f0;
         box-shadow: 0 -3px 15px rgba(37, 99, 166, 0.08);
         z-index: 999;
     }
@@ -460,7 +368,7 @@ body {
         justify-content: center;
         gap: 3px;
         text-decoration: none;
-        color: #64748B;
+        color: #64748b;
         font-size: 18px;
         transition: 0.2s;
     }
@@ -471,22 +379,15 @@ body {
     }
 
     .mobile-bottom-nav a.active {
-        color: #2563A6;
+        color: #2563a6;
     }
 
     .mobile-bottom-nav a:hover {
-        color: #2563A6;
+        color: #2563a6;
     }
-
 }
 
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
 @media (max-width: 400px) {
-
     .content {
         padding: 20px 14px;
     }
@@ -514,5 +415,4 @@ body {
     .mobile-bottom-nav a small {
         font-size: 9px;
     }
-
 }

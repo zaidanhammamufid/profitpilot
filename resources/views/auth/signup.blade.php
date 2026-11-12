@@ -14,15 +14,15 @@
         }
 
         :root {
-            --navy: #2563A6;
-            --navy-light: #1D4F91;
-            --cyan: #06B6D4;
-            --cyan-light: #A5F3FC;
-            --bg: #F8FAFC;
-            --text: #1E293B;
-            --muted: #64748B;
-            --border: #E2E8F0;
-            --white: #FFFFFF;
+            --navy: #2563a6;
+            --navy-light: #1d4f91;
+            --cyan: #06b6d4;
+            --cyan-light: #a5f3fc;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --white: #ffffff;
         }
 
         body {
@@ -37,7 +37,6 @@
             min-height: 100vh;
         }
 
-        /* PANEL KIRI */
         .left-panel {
             width: 50%;
             min-height: 100vh;
@@ -107,13 +106,12 @@
         }
 
         .hero-content p {
-            color: #DBEAFE;
+            color: #dbeafe;
             font-size: 15px;
             line-height: 1.8;
             max-width: 430px;
         }
 
-        /* GRAFIK SAMA SEPERTI LOGIN */
         .hero-graphic {
             width: 100%;
             max-width: 430px;
@@ -124,14 +122,14 @@
             align-items: flex-end;
             justify-content: space-around;
             padding: 0 15px;
-            border-bottom: 1px solid rgba(255,255,255,.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .graphic-bar {
             width: 45px;
             border-radius: 8px 8px 0 0;
-            background: rgba(165, 243, 252, .13);
-            border: 1px solid rgba(165, 243, 252, .2);
+            background: rgba(165, 243, 252, 0.13);
+            border: 1px solid rgba(165, 243, 252, 0.2);
         }
 
         .bar-one {
@@ -160,11 +158,10 @@
         }
 
         .left-footer {
-            color: #BFDBFE;
+            color: #bfdbfe;
             font-size: 12px;
         }
 
-        /* PANEL KANAN */
         .right-panel {
             width: 50%;
             min-height: 100vh;
@@ -181,7 +178,7 @@
             background: var(--white);
             padding: 42px;
             border-radius: 20px;
-            box-shadow: 0 15px 45px rgba(37, 99, 166, .10);
+            box-shadow: 0 15px 45px rgba(37, 99, 166, 0.1);
         }
 
         .mobile-brand {
@@ -213,9 +210,9 @@
 
         .alert-error {
             padding: 12px 15px;
-            background: #FEF2F2;
-            color: #B91C1C;
-            border: 1px solid #FECACA;
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
             border-radius: 9px;
             font-size: 13px;
             margin-bottom: 20px;
@@ -242,16 +239,16 @@
             outline: none;
             font-size: 14px;
             color: var(--text);
-            transition: .2s;
+            transition: 0.2s;
         }
 
         .form-group input:focus {
             border-color: var(--cyan);
-            box-shadow: 0 0 0 3px rgba(6, 182, 212, .12);
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.12);
         }
 
         .form-group input::placeholder {
-            color: #94A3B8;
+            color: #94a3b8;
         }
 
         .signup-button {
@@ -268,7 +265,7 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            transition: .2s;
+            transition: 0.2s;
             margin-top: 8px;
         }
 
@@ -288,7 +285,7 @@
 
         .form-divider::before,
         .form-divider::after {
-            content: "";
+            content: '';
             flex: 1;
             height: 1px;
             background: var(--border);
@@ -301,7 +298,7 @@
         }
 
         .login-link a {
-            color: #0891B2;
+            color: #0891b2;
             font-weight: 700;
             text-decoration: none;
         }
@@ -312,13 +309,12 @@
 
         .security-note {
             text-align: center;
-            color: #94A3B8;
+            color: #94a3b8;
             font-size: 11px;
             margin-top: 25px;
             line-height: 1.6;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 900px) {
             .left-panel {
                 padding: 35px;
@@ -410,7 +406,6 @@
 
 <div class="signup-container">
 
-    <!-- PANEL KIRI -->
     <section class="left-panel">
 
         <a href="{{ url('/') }}" class="brand">
@@ -465,7 +460,6 @@
                 dengan lebih mudah dalam satu tempat.
             </p>
 
-            <!-- GRAFIK PERTUMBUHAN SAMA SEPERTI LOGIN -->
             <div class="hero-graphic" aria-hidden="true">
                 <div class="graphic-bar bar-one"></div>
                 <div class="graphic-bar bar-two"></div>
@@ -507,7 +501,6 @@
 
     </section>
 
-    <!-- PANEL KANAN -->
     <section class="right-panel">
 
         <div class="signup-card">
@@ -521,14 +514,12 @@
                 </p>
             </div>
 
-            <!-- PESAN ERROR -->
             @if ($errors->any())
                 <div class="alert-error" role="alert">
                     {{ $errors->first() }}
                 </div>
             @endif
 
-            <!-- FORM SIGNUP -->
             <form id="signupForm"
                   method="POST"
                   action="{{ route('signup') }}">

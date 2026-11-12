@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -14,7 +13,6 @@
 
 <div class="container">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
 
         <div class="sidebar-brand">
@@ -141,10 +139,8 @@
 
     </aside>
 
-    <!-- CONTENT -->
     <main class="content">
 
-        <!-- TOPBAR -->
         <header class="topbar">
             <div class="topbar-left">
                 <button type="button" class="menu-toggle"
@@ -189,7 +185,6 @@
             </div>
         </header>
 
-        <!-- JUDUL HALAMAN -->
         <section class="page-heading">
             <div>
                 <span class="eyebrow">MANAJEMEN INVENTARIS</span>
@@ -198,7 +193,6 @@
             </div>
         </section>
 
-        <!-- PESAN ERROR -->
         @if ($errors->any())
             <div class="error-message">
                 <svg viewBox="0 0 24 24" width="20" height="20"
@@ -211,7 +205,6 @@
             </div>
         @endif
 
-        <!-- FORM EDIT BARANG -->
         <section class="form-card">
 
             <div class="section-heading">
@@ -300,7 +293,6 @@
     </main>
 </div>
 
-<!-- NAVIGASI BAWAH MOBILE -->
 <nav class="mobile-bottom-nav">
     <a href="{{ url('/dashboard') }}"
        class="{{ request()->is('dashboard') ? 'active' : '' }}">
@@ -353,68 +345,62 @@
 </nav>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const accountMenu = document.getElementById('accountMenu');
+        const accountButton = document.querySelector('.account-button');
 
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("sidebarOverlay");
-    const accountMenu = document.getElementById("accountMenu");
-    const accountButton = document.querySelector(".account-button");
+        window.toggleSidebar = function () {
+            if (!sidebar) return;
 
-    // Buka dan tutup sidebar.
-    window.toggleSidebar = function () {
-        if (!sidebar) return;
-
-        if (window.innerWidth <= 850) {
-            const isOpen = sidebar.classList.toggle("open");
-
-            if (overlay) {
-                overlay.classList.toggle("show", isOpen);
-            }
-        } else {
-            document.body.classList.toggle("sidebar-collapsed");
-        }
-    };
-
-    // Buka dan tutup dropdown akun.
-    window.toggleAccount = function () {
-        if (!accountMenu || !accountButton) return;
-
-        const isOpen = accountMenu.classList.toggle("show");
-        accountButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    };
-
-    // Tutup dropdown ketika area luar diklik.
-    document.addEventListener("click", function (event) {
-        if (
-            accountMenu &&
-            accountButton &&
-            !accountMenu.contains(event.target) &&
-            !accountButton.contains(event.target)
-        ) {
-            accountMenu.classList.remove("show");
-            accountButton.setAttribute("aria-expanded", "false");
-        }
-    });
-
-    // Tutup menu menggunakan tombol Escape.
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            if (sidebar && sidebar.classList.contains("open")) {
-                sidebar.classList.remove("open");
+            if (window.innerWidth <= 850) {
+                const isOpen = sidebar.classList.toggle('open');
 
                 if (overlay) {
-                    overlay.classList.remove("show");
+                    overlay.classList.toggle('show', isOpen);
+                }
+            } else {
+                document.body.classList.toggle('sidebar-collapsed');
+            }
+        };
+
+        window.toggleAccount = function () {
+            if (!accountMenu || !accountButton) return;
+
+            const isOpen = accountMenu.classList.toggle('show');
+            accountButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        };
+
+        document.addEventListener('click', function (event) {
+            if (
+                accountMenu &&
+                accountButton &&
+                !accountMenu.contains(event.target) &&
+                !accountButton.contains(event.target)
+            ) {
+                accountMenu.classList.remove('show');
+                accountButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                if (sidebar && sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+
+                    if (overlay) {
+                        overlay.classList.remove('show');
+                    }
+                }
+
+                if (accountMenu && accountButton) {
+                    accountMenu.classList.remove('show');
+                    accountButton.setAttribute('aria-expanded', 'false');
                 }
             }
-
-            if (accountMenu && accountButton) {
-                accountMenu.classList.remove("show");
-                accountButton.setAttribute("aria-expanded", "false");
-            }
-        }
+        });
     });
-
-});
 </script>
 
 </body>

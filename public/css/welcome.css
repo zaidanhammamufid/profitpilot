@@ -1,7 +1,3 @@
-/* =========================
-   DASAR
-========================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -9,15 +5,15 @@
 }
 
 :root {
-    --navy: #2563A6;
-    --navy-light: #1D4F91;
-    --navy-card: #FFFFFF;
-    --cyan: #06B6D4;
-    --cyan-light: #A5F3FC;
-    --white: #FFFFFF;
-    --text: #1E293B;
-    --muted: #64748B;
-    --border: #E2E8F0;
+    --navy: #2563a6;
+    --navy-light: #1d4f91;
+    --navy-card: #ffffff;
+    --cyan: #06b6d4;
+    --cyan-light: #a5f3fc;
+    --white: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
 }
 
 body {
@@ -27,15 +23,10 @@ body {
     min-height: 100vh;
 }
 
-
-/* =========================
-   NAVBAR
-========================= */
-
 .navbar {
     width: 100%;
     padding: 20px 8%;
-    background: #FFFFFF;
+    background: #ffffff;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -91,23 +82,18 @@ body {
 }
 
 .nav-login:hover {
-    background: #EFF6FF;
+    background: #eff6ff;
 }
 
 .nav-signup {
     background: var(--navy);
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .nav-signup:hover {
     background: var(--navy-light);
     transform: translateY(-2px);
 }
-
-
-/* =========================
-   HERO
-========================= */
 
 .hero {
     max-width: 1200px;
@@ -130,7 +116,7 @@ body {
     gap: 8px;
     padding: 9px 14px;
     background: rgba(255, 255, 255, 0.13);
-    color: #FFFFFF;
+    color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 30px;
     font-size: 12px;
@@ -158,7 +144,7 @@ body {
 }
 
 .hero-description {
-    color: #DBEAFE;
+    color: #dbeafe;
     font-size: 16px;
     line-height: 1.8;
     margin-bottom: 30px;
@@ -206,11 +192,6 @@ body {
     background: var(--navy-light);
 }
 
-
-/* =========================
-   ILUSTRASI DASHBOARD
-========================= */
-
 .hero-visual {
     position: relative;
     display: flex;
@@ -244,10 +225,10 @@ body {
 }
 
 .visual-badge {
-    background: #ECFEFF;
-    color: #0E7490;
+    background: #ecfeff;
+    color: #0e7490;
     padding: 7px 10px;
-    border: 1px solid #A5F3FC;
+    border: 1px solid #a5f3fc;
     border-radius: 20px;
     font-size: 10px;
     font-weight: 700;
@@ -279,7 +260,7 @@ body {
 .bar {
     width: 11%;
     border-radius: 7px 7px 0 0;
-    background: #93C5FD;
+    background: #93c5fd;
 }
 
 .bar:nth-child(1) {
@@ -329,13 +310,8 @@ body {
     z-index: 1;
 }
 
-
-/* =========================
-   FEATURES
-========================= */
-
 .features {
-    background: #F8FAFC;
+    background: #f8fafc;
     padding: 65px 8%;
     text-align: center;
     border-top: 1px solid var(--border);
@@ -374,15 +350,15 @@ body {
 .feature-card:hover {
     transform: translateY(-5px);
     border-color: var(--cyan);
-    box-shadow: 0 10px 25px rgba(37, 99, 166, 0.10);
+    box-shadow: 0 10px 25px rgba(37, 99, 166, 0.1);
 }
 
 .feature-icon {
     width: 45px;
     height: 45px;
-    background: #ECFEFF;
-    color: #0891B2;
-    border: 1px solid #A5F3FC;
+    background: #ecfeff;
+    color: #0891b2;
+    border: 1px solid #a5f3fc;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -402,14 +378,9 @@ body {
     line-height: 1.7;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
 footer {
     background: var(--navy-light);
-    color: #DBEAFE;
+    color: #dbeafe;
     text-align: center;
     padding: 23px 15px;
     font-size: 12px;
@@ -417,13 +388,7 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-
-/* =========================
-   RESPONSIVE TABLET
-========================= */
-
 @media (max-width: 850px) {
-
     .hero {
         grid-template-columns: 1fr;
         text-align: center;
@@ -444,16 +409,9 @@ footer {
         width: 100%;
         margin: auto;
     }
-
 }
 
-
-/* =========================
-   RESPONSIVE MOBILE
-========================= */
-
 @media (max-width: 600px) {
-
     .navbar {
         padding: 15px 5%;
     }
@@ -504,5 +462,4 @@ footer {
     .feature-grid {
         grid-template-columns: 1fr;
     }
-
 }

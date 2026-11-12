@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Crypt;
 
 class AdminController extends Controller
 {
-    // DASHBOARD ADMIN
     public function dashboard()
     {
         $totalUser = User::where('role', 'user')->count();
@@ -18,8 +17,6 @@ class AdminController extends Controller
         ));
     }
 
-
-    // DATA USERS
     public function users()
     {
         $users = User::where('role', 'user')
@@ -48,8 +45,6 @@ class AdminController extends Controller
         ));
     }
 
-
-    // PROFIL ADMIN
     public function profil()
     {
         $admin = User::where('id', auth()->id())
@@ -61,8 +56,6 @@ class AdminController extends Controller
         ));
     }
 
-
-    // DETAIL USER
     public function show($id)
     {
         $user = User::where('id', $id)
@@ -88,8 +81,6 @@ class AdminController extends Controller
         ));
     }
 
-
-    // EDIT USER
     public function edit($id)
     {
         $user = User::where('id', $id)
@@ -101,8 +92,6 @@ class AdminController extends Controller
         ));
     }
 
-
-    // UPDATE USER
     public function update(Request $request, $id)
     {
         $user = User::where('id', $id)
@@ -116,7 +105,7 @@ class AdminController extends Controller
 
         $user->nama_toko = $data['nama_toko'];
 
-        if (!empty($data['password'])) {
+        if (! empty($data['password'])) {
 
             $user->password =
                 $data['password'];
@@ -132,8 +121,6 @@ class AdminController extends Controller
         return redirect('/admin/users');
     }
 
-
-    // HAPUS USER
     public function destroy($id)
     {
         $user = User::where('id', $id)

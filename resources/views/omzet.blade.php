@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -389,44 +388,44 @@
 </nav>
 
 <script>
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
 
-    if (!sidebar) return;
+        if (!sidebar) return;
 
-    if (window.innerWidth <= 850) {
-        const isOpen = sidebar.classList.toggle('open');
-        if (overlay) overlay.classList.toggle('show', isOpen);
-    } else {
-        document.body.classList.toggle('sidebar-collapsed');
+        if (window.innerWidth <= 850) {
+            const isOpen = sidebar.classList.toggle('open');
+            if (overlay) overlay.classList.toggle('show', isOpen);
+        } else {
+            document.body.classList.toggle('sidebar-collapsed');
+        }
     }
-}
 
-function toggleAccount() {
-    const menu = document.getElementById('accountMenu');
-    const button = document.getElementById('accountButton');
+    function toggleAccount() {
+        const menu = document.getElementById('accountMenu');
+        const button = document.getElementById('accountButton');
 
-    if (!menu || !button) return;
+        if (!menu || !button) return;
 
-    const isOpen = menu.classList.toggle('show');
-    button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-}
-
-document.addEventListener('click', function(event) {
-    const account = document.querySelector('.account');
-    const menu = document.getElementById('accountMenu');
-    const button = document.getElementById('accountButton');
-
-    if (account && menu && !account.contains(event.target)) {
-        menu.classList.remove('show');
-        if (button) button.setAttribute('aria-expanded', 'false');
+        const isOpen = menu.classList.toggle('show');
+        button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     }
-});
+
+    document.addEventListener('click', function (event) {
+        const account = document.querySelector('.account');
+        const menu = document.getElementById('accountMenu');
+        const button = document.getElementById('accountButton');
+
+        if (account && menu && !account.contains(event.target)) {
+            menu.classList.remove('show');
+            if (button) button.setAttribute('aria-expanded', 'false');
+        }
+    });
 </script>
 
 <script>
-const dataMingguan = @json($mingguan);
+    const dataMingguan = @json($mingguan);
 </script>
 <script src="{{ asset('js/omzet.js') }}"></script>
 

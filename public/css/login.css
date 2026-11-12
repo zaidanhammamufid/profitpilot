@@ -1,11 +1,11 @@
 :root {
-    --navy: #2563A6;
-    --cyan: #06B6D4;
-    --bg: #F8FAFC;
-    --white: #FFFFFF;
-    --text: #1E293B;
-    --muted: #64748B;
-    --border: #E2E8F0;
+    --navy: #2563a6;
+    --cyan: #06b6d4;
+    --bg: #f8fafc;
+    --white: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
 }
 
 * {
@@ -20,8 +20,6 @@ body {
     color: var(--text);
     background: var(--bg);
 }
-
-/* PANEL KIRI */
 
 .login-container {
     display: grid;
@@ -102,7 +100,7 @@ body {
 
 .hero-content p {
     max-width: 420px;
-    color: #DBEAFE;
+    color: #dbeafe;
     font-size: 15px;
     line-height: 1.8;
 }
@@ -112,9 +110,9 @@ body {
     height: 180px;
     margin-top: 35px;
     overflow: hidden;
-    border: 1px solid #FFFFFF18;
+    border: 1px solid #ffffff18;
     border-radius: 16px;
-    background: #FFFFFF08;
+    background: #ffffff08;
 }
 
 .hero-graphic svg {
@@ -129,7 +127,7 @@ body {
     bottom: 0;
     width: 13%;
     border-radius: 6px 6px 0 0;
-    background: #06B6D425;
+    background: #06b6d425;
 }
 
 .bar-one {
@@ -155,11 +153,9 @@ body {
 .left-footer {
     position: relative;
     z-index: 1;
-    color: #BFDBFE;
+    color: #bfdbfe;
     font-size: 12px;
 }
-
-/* PANEL KANAN */
 
 .right-panel {
     display: flex;
@@ -173,10 +169,10 @@ body {
     width: 100%;
     max-width: 420px;
     padding: 36px;
-    border: 1px solid #E2E8F0;
+    border: 1px solid #e2e8f0;
     border-radius: 18px;
     background: var(--white);
-    box-shadow: 0 16px 45px #2563A610;
+    box-shadow: 0 16px 45px #2563a610;
 }
 
 .mobile-brand {
@@ -201,10 +197,10 @@ body {
 .alert-error {
     margin-bottom: 20px;
     padding: 12px 14px;
-    border: 1px solid #FECACA;
+    border: 1px solid #fecaca;
     border-radius: 9px;
-    background: #FEF2F2;
-    color: #B91C1C;
+    background: #fef2f2;
+    color: #b91c1c;
     line-height: 1.5;
 }
 
@@ -230,16 +226,18 @@ body {
     background: var(--white);
     color: var(--text);
     font: inherit;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
 }
 
 .form-group input::placeholder {
-    color: #94A3B8;
+    color: #94a3b8;
 }
 
 .form-group input:focus {
     border-color: var(--cyan);
-    box-shadow: 0 0 0 3px #06B6D420;
+    box-shadow: 0 0 0 3px #06b6d420;
 }
 
 .login-button {
@@ -257,11 +255,13 @@ body {
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
+    transition:
+        background 0.2s,
+        transform 0.2s;
 }
 
 .login-button:hover {
-    background: #1D4F91;
+    background: #1d4f91;
 }
 
 .login-button:active {
@@ -269,7 +269,7 @@ body {
 }
 
 .login-button span:last-child {
-    color: #A5F3FC;
+    color: #a5f3fc;
     font-size: 20px;
 }
 
@@ -284,7 +284,7 @@ body {
 
 .form-divider::before,
 .form-divider::after {
-    content: "";
+    content: '';
     flex: 1;
     height: 1px;
     background: var(--border);
@@ -297,7 +297,7 @@ body {
 }
 
 .signup-link a {
-    color: #0891B2;
+    color: #0891b2;
     font-weight: 700;
     text-decoration: none;
 }
@@ -308,13 +308,11 @@ body {
 
 .security-note {
     margin-top: 26px;
-    color: #94A3B8;
+    color: #94a3b8;
     font-size: 11px;
     line-height: 1.6;
     text-align: center;
 }
-
-/* RESPONSIVE */
 
 @media (max-width: 850px) {
     .login-container {

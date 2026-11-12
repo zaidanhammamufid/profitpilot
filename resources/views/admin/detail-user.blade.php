@@ -8,15 +8,15 @@
 
     <style>
         :root {
-            --navy: #2563A6;
-            --navy-light: #1D4F91;
-            --cyan: #06B6D4;
-            --bg: #F8FAFC;
-            --white: #FFFFFF;
-            --text: #1E293B;
-            --muted: #64748B;
-            --border: #E2E8F0;
-            --shadow: 0 8px 25px rgba(37, 99, 166, 0.10);
+            --navy: #2563a6;
+            --navy-light: #1d4f91;
+            --cyan: #06b6d4;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 8px 25px rgba(37, 99, 166, 0.1);
         }
 
         * {
@@ -37,8 +37,6 @@
             margin: 0 auto;
             padding: 35px;
         }
-
-        /* HEADER */
 
         .topbar {
             display: flex;
@@ -65,7 +63,7 @@
             border-radius: 11px;
             color: var(--navy);
             text-decoration: none;
-            transition: .2s;
+            transition: 0.2s;
         }
 
         .back-button:hover {
@@ -115,8 +113,6 @@
             height: 20px;
         }
 
-        /* CONTENT */
-
         .content-card {
             background: var(--white);
             border: 1px solid var(--border);
@@ -127,11 +123,7 @@
 
         .card-header {
             padding: 25px 30px;
-            background: linear-gradient(
-                120deg,
-                var(--navy),
-                var(--navy-light)
-            );
+            background: linear-gradient(120deg, var(--navy), var(--navy-light));
             color: white;
             display: flex;
             align-items: center;
@@ -145,8 +137,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255,255,255,.12);
-            border: 1px solid rgba(255,255,255,.15);
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 14px;
         }
 
@@ -161,7 +153,7 @@
         }
 
         .card-header p {
-            color: #E0F2FE;
+            color: #e0f2fe;
             font-size: 13px;
         }
 
@@ -186,7 +178,7 @@
             padding: 19px;
             border: 1px solid var(--border);
             border-radius: 12px;
-            background: #F8FAFC;
+            background: #f8fafc;
             min-width: 0;
         }
 
@@ -213,8 +205,6 @@
             overflow-wrap: anywhere;
         }
 
-        /* PASSWORD */
-
         .password-cell {
             display: flex;
             align-items: center;
@@ -233,12 +223,12 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: .2s;
+            transition: 0.2s;
             flex-shrink: 0;
         }
 
         .password-button:hover {
-            background: #ECFEFF;
+            background: #ecfeff;
             color: var(--cyan);
             border-color: var(--cyan);
         }
@@ -251,8 +241,6 @@
         .eye-off {
             display: none;
         }
-
-        /* FOOTER */
 
         .card-footer {
             padding: 20px 30px;
@@ -280,7 +268,7 @@
             text-decoration: none;
             font-size: 13px;
             font-weight: 700;
-            transition: .2s;
+            transition: 0.2s;
         }
 
         .footer-button:hover {
@@ -292,8 +280,6 @@
             width: 17px;
             height: 17px;
         }
-
-        /* RESPONSIVE */
 
         @media (max-width: 650px) {
             .page-container {
@@ -350,7 +336,6 @@
 
 <div class="page-container">
 
-    <!-- HEADER -->
     <header class="topbar">
 
         <div class="topbar-left">
@@ -404,8 +389,6 @@
 
     </header>
 
-
-    <!-- DETAIL CARD -->
     <main class="content-card">
 
         <div class="card-header">
@@ -433,7 +416,6 @@
 
         </div>
 
-
         <div class="card-body">
 
             <h3 class="section-title">
@@ -442,7 +424,6 @@
 
             <div class="detail-list">
 
-                <!-- NAMA TOKO -->
                 <div class="detail-item">
 
                     <div class="detail-label">
@@ -470,8 +451,6 @@
 
                 </div>
 
-
-                <!-- PASSWORD -->
                 <div class="detail-item">
 
                     <div class="detail-label">
@@ -543,8 +522,6 @@
 
                 </div>
 
-
-                <!-- TANGGAL DAFTAR -->
                 <div class="detail-item">
 
                     <div class="detail-label">
@@ -571,8 +548,6 @@
 
                 </div>
 
-
-                <!-- TERAKHIR DIUBAH -->
                 <div class="detail-item">
 
                     <div class="detail-label">
@@ -603,8 +578,6 @@
 
         </div>
 
-
-        <!-- FOOTER -->
         <div class="card-footer">
 
             <p class="footer-note">
@@ -636,10 +609,8 @@
 
 </div>
 
-
 <script>
     function lihatPassword() {
-
         const password = document.getElementById('password');
         const button = document.getElementById('password-button');
         const eyeOpen = document.getElementById('eye-open');
@@ -648,7 +619,6 @@
         const sedangTerlihat = password.dataset.visible === 'true';
 
         if (sedangTerlihat) {
-
             password.textContent = '••••••••';
             password.dataset.visible = 'false';
 
@@ -656,9 +626,7 @@
             eyeClosed.style.display = 'none';
 
             button.setAttribute('aria-label', 'Lihat password');
-
         } else {
-
             password.textContent = password.dataset.password;
             password.dataset.visible = 'true';
 
@@ -666,7 +634,6 @@
             eyeClosed.style.display = 'block';
 
             button.setAttribute('aria-label', 'Sembunyikan password');
-
         }
     }
 </script>

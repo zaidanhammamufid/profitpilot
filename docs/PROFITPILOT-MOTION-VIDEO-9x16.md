@@ -1628,6 +1628,7 @@ Untuk hasil terbaik, gunakan SFX library berlisensi dan sesuaikan pitch/level di
 
 - [ ] VO jelas di earbud dan speaker HP.
 - [ ] Musik tidak menutupi VO.
+
 - [ ] SFX tidak terlalu keras atau menyakitkan.
 - [ ] Tidak ada klik/pop di transisi audio.
 - [ ] Master −14 LUFS, −1 dBTP.
@@ -1792,4 +1793,3 @@ Untuk hasil terbaik, gunakan SFX library berlisensi dan sesuaikan pitch/level di
 **Akhir dokumen.**
 
 Kalau ada perubahan durasi, angka dummy, atau gaya visual, update bagian 1.5 terlebih dahulu, lalu sesuaikan storyboard, SRT, dan SFX cue sheet agar tetap konsisten.
-

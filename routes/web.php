@@ -1,28 +1,19 @@
-
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
-use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\RestokController;
-
-
-// =====================================
-// WELCOME
-// =====================================
+use App\Http\Controllers\TransaksiController;
+use App\Models\Transaksi;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-// =====================================
-// LOGIN
-// =====================================
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -49,11 +40,6 @@ Route::post('/login', function (Request $request) {
     ])->withInput();
 });
 
-
-// =====================================
-// LOGOUT
-// =====================================
-
 Route::post('/logout', function (Request $request) {
     Auth::logout();
 
@@ -63,13 +49,8 @@ Route::post('/logout', function (Request $request) {
     return redirect('/');
 })->name('logout');
 
-
-// =====================================
-// DASHBOARD USER
-// =====================================
-
 Route::get('/dashboard', function () {
-    $transaksi = \App\Models\Transaksi::where('user_id', Auth::id())
+    $transaksi = Transaksi::where('user_id', Auth::id())
         ->orderBy('tanggal', 'desc')
         ->get();
 
@@ -91,21 +72,11 @@ Route::get('/dashboard', function () {
     ));
 })->middleware('auth');
 
-
-// =====================================
-// PROFIL USER
-// =====================================
-
 Route::get('/profil', function () {
     $user = Auth::user();
 
     return view('auth.profil', compact('user'));
 })->middleware('auth')->name('profil');
-
-
-// =====================================
-// EDIT PROFIL USER
-// =====================================
 
 Route::get('/profil/edit', function () {
     $user = Auth::user();
@@ -123,7 +94,7 @@ Route::put('/profil/edit', function (Request $request) {
 
     $user->nama_toko = $data['nama_toko'];
 
-    if (!empty($data['password'])) {
+    if (! empty($data['password'])) {
         $user->password = $data['password'];
         $user->password_asli = Crypt::encryptString($data['password']);
     }
@@ -132,11 +103,6 @@ Route::put('/profil/edit', function (Request $request) {
 
     return redirect('/profil');
 })->middleware('auth')->name('profil.update');
-
-
-// =====================================
-// SIGNUP
-// =====================================
 
 Route::get('/signup', function () {
     return view('auth.signup');
@@ -148,7 +114,7 @@ Route::post('/signup', function (Request $request) {
         'password' => 'required|min:6|confirmed',
     ]);
 
-    \App\Models\User::create([
+    User::create([
         'nama_toko' => $data['nama_toko'],
         'password' => $data['password'],
         'password_asli' => Crypt::encryptString($data['password']),
@@ -157,11 +123,6 @@ Route::post('/signup', function (Request $request) {
 
     return redirect('/login');
 });
-
-
-// =====================================
-// TRANSAKSI
-// =====================================
 
 Route::get('/transaksi', [TransaksiController::class, 'index'])
     ->middleware('auth');
@@ -173,11 +134,6 @@ Route::post('/transaksi', [TransaksiController::class, 'store'])
 Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy'])
     ->middleware('auth')
     ->name('transaksi.destroy');
-
-
-// =====================================
-// BARANG
-// =====================================
 
 Route::get('/barang', [BarangController::class, 'index'])
     ->middleware('auth')
@@ -199,27 +155,12 @@ Route::delete('/barang/{id}', [BarangController::class, 'destroy'])
     ->middleware('auth')
     ->name('barang.destroy');
 
-
-// =====================================
-// RESTOK BARANG
-// =====================================
-
 Route::post('/barang/{barangId}/restok', [RestokController::class, 'store'])
     ->middleware('auth')
     ->name('barang.restok.store');
 
-
-// =====================================
-// OMZET
-// =====================================
-
 Route::get('/omzet', [TransaksiController::class, 'omzet'])
     ->middleware('auth');
-
-
-// =====================================
-// ADMIN
-// =====================================
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
     ->middleware('admin');

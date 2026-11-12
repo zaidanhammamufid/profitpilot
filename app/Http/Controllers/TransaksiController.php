@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
-use App\Models\Transaksi;
 use App\Models\DetailTransaksi;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +12,6 @@ use Illuminate\Validation\ValidationException;
 
 class TransaksiController extends Controller
 {
-    // MENAMPILKAN TRANSAKSI
     public function index()
     {
         $userId = Auth::id();
@@ -49,7 +48,6 @@ class TransaksiController extends Controller
         ));
     }
 
-    // MENYIMPAN TRANSAKSI
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -71,8 +69,7 @@ class TransaksiController extends Controller
         $items = $data['items'] ?? [];
         $mode = $data['mode_pemasukan'] ?? null;
 
-        // Mendukung form lama yang memakai satu barang.
-        if (empty($items) && !empty($data['barang_id'])) {
+        if (empty($items) && ! empty($data['barang_id'])) {
             if (empty($data['jumlah_barang'])) {
                 throw ValidationException::withMessages([
                     'jumlah_barang' => 'Jumlah barang wajib diisi.',
@@ -85,26 +82,22 @@ class TransaksiController extends Controller
             ];
         }
 
-        // Tentukan mode otomatis untuk form lama.
         if ($data['jenis'] === 'pemasukan' && $mode === null) {
-            $mode = !empty($items) ? 'barang' : 'manual';
+            $mode = ! empty($items) ? 'barang' : 'manual';
         }
 
-        // Pemasukan manual tidak boleh mengurangi stok.
-        if ($mode === 'manual' && !empty($items)) {
+        if ($mode === 'manual' && ! empty($items)) {
             throw ValidationException::withMessages([
                 'items' => 'Pemasukan manual tidak boleh berisi barang.',
             ]);
         }
 
-        // Pengeluaran tidak boleh memakai daftar barang penjualan.
-        if ($data['jenis'] === 'pengeluaran' && !empty($items)) {
+        if ($data['jenis'] === 'pengeluaran' && ! empty($items)) {
             throw ValidationException::withMessages([
                 'items' => 'Pengeluaran tidak boleh memakai daftar barang penjualan.',
             ]);
         }
 
-        // Mode penjualan wajib mempunyai barang.
         if (
             $data['jenis'] === 'pemasukan'
             && $mode === 'barang'
@@ -115,7 +108,6 @@ class TransaksiController extends Controller
             ]);
         }
 
-        // Transaksi manual wajib mempunyai nominal.
         if (empty($items) && empty($data['jumlah'])) {
             throw ValidationException::withMessages([
                 'jumlah' => 'Nominal transaksi wajib diisi.',
@@ -130,8 +122,6 @@ class TransaksiController extends Controller
             $barangTerkunci = [];
             $totalPerBarang = [];
 
-            // Jumlahkan kuantitas apabila barang yang sama
-            // dipilih pada beberapa baris.
             foreach ($items as $item) {
                 $barangId = (int) $item['barang_id'];
                 $qty = (int) $item['jumlah_barang'];
@@ -140,7 +130,6 @@ class TransaksiController extends Controller
                     ($totalPerBarang[$barangId] ?? 0) + $qty;
             }
 
-            // Kunci dan periksa setiap barang satu kali.
             foreach ($totalPerBarang as $barangId => $totalQty) {
                 $barang = Barang::where('id', $barangId)
                     ->where('user_id', $userId)
@@ -148,7 +137,7 @@ class TransaksiController extends Controller
                     ->lockForUpdate()
                     ->first();
 
-                if (!$barang) {
+                if (! $barang) {
                     throw ValidationException::withMessages([
                         'items' => 'Barang tidak ditemukan atau sudah diarsipkan.',
                     ]);
@@ -156,17 +145,15 @@ class TransaksiController extends Controller
 
                 if ($barang->stok < $totalQty) {
                     throw ValidationException::withMessages([
-                        'items' =>
-                            "Stok {$barang->nama_barang} tidak mencukupi. "
-                            . "Stok tersedia: {$barang->stok}, "
-                            . "jumlah yang diminta: {$totalQty}.",
+                        'items' => "Stok {$barang->nama_barang} tidak mencukupi. "
+                            ."Stok tersedia: {$barang->stok}, "
+                            ."jumlah yang diminta: {$totalQty}.",
                     ]);
                 }
 
                 $barangTerkunci[$barangId] = $barang;
             }
 
-            // Hitung subtotal setiap baris berdasarkan harga barang.
             foreach ($items as $item) {
                 $barangId = (int) $item['barang_id'];
                 $qty = (int) $item['jumlah_barang'];
@@ -185,14 +172,12 @@ class TransaksiController extends Controller
                 ];
             }
 
-            // Simpan transaksi utama.
             $transaksi = Transaksi::create([
                 'user_id' => $userId,
                 'barang_id' => $detailBarang[0]['barang']->id ?? null,
-                'jumlah_barang' =>
-                    $detailBarang[0]['jumlah_barang'] ?? null,
+                'jumlah_barang' => $detailBarang[0]['jumlah_barang'] ?? null,
                 'jenis' => $data['jenis'],
-                'jumlah' => !empty($detailBarang)
+                'jumlah' => ! empty($detailBarang)
                     ? $total
                     : $data['jumlah'],
                 'keterangan' => $data['keterangan'],
@@ -200,7 +185,6 @@ class TransaksiController extends Controller
                 'status' => 'aktif',
             ]);
 
-            // Simpan detail penjualan.
             foreach ($detailBarang as $detail) {
                 DetailTransaksi::create([
                     'transaksi_id' => $transaksi->id,
@@ -212,8 +196,6 @@ class TransaksiController extends Controller
                 ]);
             }
 
-            // Kurangi stok berdasarkan total tiap barang
-            // setelah seluruh validasi berhasil.
             foreach ($totalPerBarang as $barangId => $totalQty) {
                 $barangTerkunci[$barangId]->decrement('stok', $totalQty);
             }
@@ -223,7 +205,6 @@ class TransaksiController extends Controller
             ->with('success', 'Transaksi berhasil disimpan.');
     }
 
-    // MENAMPILKAN RINGKASAN OMZET
     public function omzet()
     {
         $transaksi = Transaksi::where('user_id', Auth::id())
@@ -262,7 +243,7 @@ class TransaksiController extends Controller
             })
             ->values()
             ->map(function ($data, $index) {
-                $data['minggu'] = 'Minggu ' . ($index + 1);
+                $data['minggu'] = 'Minggu '.($index + 1);
 
                 return $data;
             });
@@ -276,7 +257,6 @@ class TransaksiController extends Controller
         ));
     }
 
-    // MEMBATALKAN TRANSAKSI DAN MENGEMBALIKAN STOK
     public function destroy($id)
     {
         DB::transaction(function () use ($id) {
@@ -297,7 +277,7 @@ class TransaksiController extends Controller
             )->get();
 
             foreach ($detailTransaksi as $detail) {
-                if (!$detail->barang_id) {
+                if (! $detail->barang_id) {
                     continue;
                 }
 
@@ -306,15 +286,13 @@ class TransaksiController extends Controller
                     ->lockForUpdate()
                     ->first();
 
-                if (!$barang) {
+                if (! $barang) {
                     continue;
                 }
 
                 $barang->increment('stok', $detail->jumlah_barang);
 
-                // Barang yang diarsipkan diaktifkan kembali
-                // jika stok dikembalikan melalui pembatalan.
-                if (!$barang->aktif) {
+                if (! $barang->aktif) {
                     $barang->aktif = true;
                     $barang->save();
                 }

@@ -15,14 +15,14 @@
         }
 
         :root {
-            --navy: #2563A6;
-            --navy-light: #1D4F91;
-            --cyan: #06B6D4;
-            --bg: #F8FAFC;
-            --text: #1E293B;
-            --muted: #64748B;
-            --border: #E2E8F0;
-            --white: #FFFFFF;
+            --navy: #2563a6;
+            --navy-light: #1d4f91;
+            --cyan: #06b6d4;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --white: #ffffff;
         }
 
         body {
@@ -32,14 +32,10 @@
             min-height: 100vh;
         }
 
-        /* CONTAINER */
-
         .container {
             min-height: 100vh;
             padding: 40px 20px;
         }
-
-        /* CARD */
 
         .card {
             max-width: 620px;
@@ -48,10 +44,8 @@
             padding: 32px;
             border-radius: 14px;
             border: 1px solid var(--border);
-            box-shadow: 0 4px 15px rgba(37, 99, 166, 0.10);
+            box-shadow: 0 4px 15px rgba(37, 99, 166, 0.1);
         }
-
-        /* HEADER */
 
         .page-header {
             margin-bottom: 28px;
@@ -79,12 +73,10 @@
             line-height: 1.6;
         }
 
-        /* ERROR */
-
         .error {
-            background: #FEF2F2;
-            color: #B91C1C;
-            border: 1px solid #FECACA;
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
             padding: 14px 16px;
             border-radius: 9px;
             margin-bottom: 22px;
@@ -96,8 +88,6 @@
             margin-top: 8px;
             margin-left: 20px;
         }
-
-        /* FORM */
 
         .form-group {
             margin-bottom: 22px;
@@ -129,7 +119,7 @@
         }
 
         input::placeholder {
-            color: #94A3B8;
+            color: #94a3b8;
         }
 
         .input-hint {
@@ -139,8 +129,6 @@
             font-size: 11px;
             line-height: 1.5;
         }
-
-        /* BUTTONS */
 
         .buttons {
             display: flex;
@@ -174,12 +162,12 @@
         }
 
         .cancel {
-            background: #F1F5F9;
+            background: #f1f5f9;
             color: var(--text);
         }
 
         .cancel:hover {
-            background: #E2E8F0;
+            background: #e2e8f0;
         }
 
         .buttons svg {
@@ -187,10 +175,7 @@
             height: 17px;
         }
 
-        /* MOBILE */
-
         @media (max-width: 600px) {
-
             .container {
                 padding: 22px 14px;
             }

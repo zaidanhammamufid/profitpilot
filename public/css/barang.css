@@ -1,5 +1,4 @@
-
-@import url("./dashboard.css");
+@import url('./dashboard.css');
 
 .logo-icon svg {
     display: block;
@@ -78,7 +77,7 @@
     margin-bottom: 15px;
     padding: 8px 4px;
     border-radius: 10px;
-    color: #FFFFFF;
+    color: #ffffff;
     text-decoration: none;
     transition: background 0.2s ease;
 }
@@ -120,14 +119,14 @@
 
 .page-heading h2 {
     margin: 0 0 8px;
-    color: #2563A6;
+    color: #2563a6;
     font-size: 25px;
     font-weight: 700;
 }
 
 .page-heading p {
     margin: 0;
-    color: #64748B;
+    color: #64748b;
     font-size: 14px;
     line-height: 1.6;
 }
@@ -135,7 +134,7 @@
 .eyebrow {
     display: inline-block;
     margin-bottom: 8px;
-    color: #06B6D4;
+    color: #06b6d4;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.3px;
@@ -146,9 +145,9 @@
     width: 100%;
     margin-bottom: 24px;
     padding: 25px;
-    border: 1px solid #E2E8F0;
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0 4px 18px rgba(37, 99, 166, 0.05);
 }
 
@@ -167,20 +166,20 @@
     height: 43px;
     flex-shrink: 0;
     border-radius: 12px;
-    background: #DBEAFE;
-    color: #1D4F91;
+    background: #dbeafe;
+    color: #1d4f91;
 }
 
 .section-heading h2 {
     margin: 0 0 5px;
-    color: #2563A6;
+    color: #2563a6;
     font-size: 17px;
     font-weight: 700;
 }
 
 .section-heading p {
     margin: 0;
-    color: #64748B;
+    color: #64748b;
     font-size: 13px;
     line-height: 1.5;
 }
@@ -210,24 +209,26 @@
     min-width: 0;
     height: 44px;
     padding: 0 13px;
-    border: 1px solid #CBD5E1;
+    border: 1px solid #cbd5e1;
     border-radius: 9px;
     outline: none;
-    background: #FFFFFF;
-    color: #1E293B;
+    background: #ffffff;
+    color: #1e293b;
     font-family: inherit;
     font-size: 13px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-    border-color: #06B6D4;
+    border-color: #06b6d4;
     box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.12);
 }
 
 .form-group input::placeholder {
-    color: #94A3B8;
+    color: #94a3b8;
 }
 
 .form-actions {
@@ -245,17 +246,19 @@
     padding: 0 19px;
     border: none;
     border-radius: 9px;
-    background: #2563A6;
-    color: #FFFFFF;
+    background: #2563a6;
+    color: #ffffff;
     font-family: inherit;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 .primary-button:hover {
-    background: #1D4F91;
+    background: #1d4f91;
     transform: translateY(-1px);
 }
 
@@ -271,20 +274,16 @@
 }
 
 .success-message {
-    border: 1px solid #A7F3D0;
-    background: #ECFDF5;
+    border: 1px solid #a7f3d0;
+    background: #ecfdf5;
     color: #047857;
 }
 
 .error-message {
-    border: 1px solid #FECACA;
-    background: #FEF2F2;
-    color: #B91C1C;
+    border: 1px solid #fecaca;
+    background: #fef2f2;
+    color: #b91c1c;
 }
-
-/* ==============================
-   FILTER DAN PENCARIAN
-============================== */
 
 .filter-grid {
     display: grid;
@@ -302,7 +301,7 @@
 .search-box svg {
     position: absolute;
     left: 13px;
-    color: #94A3B8;
+    color: #94a3b8;
     pointer-events: none;
 }
 
@@ -310,14 +309,10 @@
     padding-left: 42px;
 }
 
-/* ==============================
-   TABEL BARANG
-============================== */
-
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
-    border: 1px solid #E2E8F0;
+    border: 1px solid #e2e8f0;
     border-radius: 11px;
 }
 
@@ -329,7 +324,7 @@
 }
 
 .table-wrapper thead {
-    background: #F8FAFC;
+    background: #f8fafc;
 }
 
 .table-wrapper th {
@@ -342,7 +337,7 @@
 
 .table-wrapper td {
     padding: 15px 16px;
-    border-top: 1px solid #E2E8F0;
+    border-top: 1px solid #e2e8f0;
     color: #334155;
     font-size: 13px;
     vertical-align: middle;
@@ -353,11 +348,11 @@
 }
 
 .table-wrapper tbody tr:hover {
-    background: #F8FAFC;
+    background: #f8fafc;
 }
 
 .nama-barang {
-    color: #2563A6 !important;
+    color: #2563a6 !important;
     font-weight: 600;
 }
 
@@ -365,10 +360,6 @@
     font-weight: 600;
     white-space: nowrap;
 }
-
-/* ==============================
-   BADGE STOK
-============================== */
 
 .stock-badge {
     display: inline-flex;
@@ -382,23 +373,19 @@
 }
 
 .stock-normal {
-    background: #DCFCE7;
-    color: #15803D;
+    background: #dcfce7;
+    color: #15803d;
 }
 
 .stock-low {
-    background: #FEF3C7;
-    color: #B45309;
+    background: #fef3c7;
+    color: #b45309;
 }
 
 .stock-empty {
-    background: #FEE2E2;
-    color: #B91C1C;
+    background: #fee2e2;
+    color: #b91c1c;
 }
-
-/* ==============================
-   TOMBOL AKSI
-============================== */
 
 .action-buttons {
     display: flex;
@@ -431,47 +418,43 @@
 }
 
 .edit-button {
-    background: #DBEAFE;
-    color: #1D4F91;
+    background: #dbeafe;
+    color: #1d4f91;
 }
 
 .edit-button:hover {
-    background: #BFDBFE;
+    background: #bfdbfe;
 }
 
 .restock-button {
-    background: #CFFAFE;
-    color: #0E7490;
+    background: #cffafe;
+    color: #0e7490;
 }
 
 .restock-button:hover {
-    background: #A5F3FC;
+    background: #a5f3fc;
 }
 
 .delete-button {
-    background: #FEE2E2;
-    color: #B91C1C;
+    background: #fee2e2;
+    color: #b91c1c;
 }
 
 .delete-button:hover {
-    background: #FECACA;
+    background: #fecaca;
 }
-
-/* ==============================
-   DATA KOSONG
-============================== */
 
 .empty {
     padding: 35px 20px !important;
     text-align: center !important;
-    color: #64748B !important;
+    color: #64748b !important;
 }
 
 .empty-icon {
     display: flex;
     justify-content: center;
     margin-bottom: 12px;
-    color: #94A3B8;
+    color: #94a3b8;
 }
 
 .empty strong,
@@ -490,17 +473,9 @@
     line-height: 1.6;
 }
 
-/* ==============================
-   RIWAYAT RESTOK
-============================== */
-
 .restock-history-card {
     margin-top: 25px;
 }
-
-/* ==============================
-   DROPDOWN AKUN
-============================== */
 
 .account {
     position: relative;
@@ -511,10 +486,10 @@
     align-items: center;
     gap: 10px;
     padding: 7px 10px;
-    border: 1px solid #E2E8F0;
+    border: 1px solid #e2e8f0;
     border-radius: 10px;
-    background: #FFFFFF;
-    color: #2563A6;
+    background: #ffffff;
+    color: #2563a6;
     font-family: inherit;
     font-size: 13px;
     font-weight: 600;
@@ -528,8 +503,8 @@
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background: #2563A6;
-    color: #FFFFFF;
+    background: #2563a6;
+    color: #ffffff;
     font-size: 14px;
     font-weight: 700;
 }
@@ -544,7 +519,7 @@
 .account-arrow {
     display: flex;
     align-items: center;
-    color: #64748B;
+    color: #64748b;
 }
 
 .account-menu {
@@ -555,9 +530,9 @@
     display: none;
     min-width: 170px;
     padding: 7px;
-    border: 1px solid #E2E8F0;
+    border: 1px solid #e2e8f0;
     border-radius: 10px;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0 10px 25px rgba(37, 99, 166, 0.12);
 }
 
@@ -575,13 +550,9 @@
 }
 
 .account-menu a:hover {
-    background: #EFF6FF;
-    color: #1D4F91;
+    background: #eff6ff;
+    color: #1d4f91;
 }
-
-/* ==============================
-   MODAL RESTOK
-============================== */
 
 .modal-overlay {
     position: fixed;
@@ -601,9 +572,9 @@
     max-height: 90vh;
     overflow-y: auto;
     padding: 25px;
-    border: 1px solid #E2E8F0;
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0 20px 50px rgba(37, 99, 166, 0.2);
     animation: modalMasuk 0.2s ease;
 }
@@ -627,16 +598,16 @@
     margin-bottom: 20px;
     padding: 15px;
     border-radius: 10px;
-    background: #F8FAFC;
+    background: #f8fafc;
 }
 
 .modal-info span {
-    color: #64748B;
+    color: #64748b;
     font-size: 12px;
 }
 
 .modal-info strong {
-    color: #2563A6;
+    color: #2563a6;
     font-size: 13px;
 }
 
@@ -654,9 +625,9 @@
 .cancel-button {
     min-height: 43px;
     padding: 0 18px;
-    border: 1px solid #CBD5E1;
+    border: 1px solid #cbd5e1;
     border-radius: 9px;
-    background: #FFFFFF;
+    background: #ffffff;
     color: #475569;
     font-family: inherit;
     font-size: 13px;
@@ -665,31 +636,19 @@
 }
 
 .cancel-button:hover {
-    background: #F1F5F9;
+    background: #f1f5f9;
 }
-
-/* ==============================
-   FOOTER
-============================== */
 
 .page-footer {
     padding: 18px 5px;
-    color: #94A3B8;
+    color: #94a3b8;
     font-size: 12px;
     text-align: center;
 }
 
-/* ==============================
-   NAVIGASI MOBILE
-============================== */
-
 .mobile-bottom-nav {
     display: none;
 }
-
-/* ==============================
-   RESPONSIVE TABLET
-============================== */
 
 @media (max-width: 1024px) {
     .form-grid {
@@ -705,10 +664,6 @@
         padding: 20px;
     }
 }
-
-/* ==============================
-   RESPONSIVE HP
-============================== */
 
 @media (max-width: 850px) {
     .page-heading h2 {

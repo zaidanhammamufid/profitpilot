@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
 {
-    // MENAMPILKAN BARANG DAN RIWAYAT RESTOK
     public function index()
     {
         $userId = Auth::id();
@@ -31,7 +30,6 @@ class BarangController extends Controller
         ));
     }
 
-    // MENAMBAH BARANG
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -52,7 +50,6 @@ class BarangController extends Controller
             ->with('success', 'Barang berhasil ditambahkan.');
     }
 
-    // HALAMAN EDIT BARANG
     public function edit($id)
     {
         $barang = Barang::where('id', $id)
@@ -63,7 +60,6 @@ class BarangController extends Controller
         return view('edit-barang', compact('barang'));
     }
 
-    // UPDATE BARANG
     public function update(Request $request, $id)
     {
         $barang = Barang::where('id', $id)
@@ -86,7 +82,6 @@ class BarangController extends Controller
             ->with('success', 'Data barang berhasil diperbarui.');
     }
 
-    // ARSIPKAN BARANG TANPA MENGHAPUS RIWAYAT
     public function destroy($id)
     {
         $barang = Barang::where('id', $id)

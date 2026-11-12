@@ -1,22 +1,16 @@
-
-/* ========================================
-   PROFITPILOT - DASHBOARD
-   THEME: WHITE, ROYAL BLUE, CYAN
-======================================== */
-
 :root {
-    --navy: #2563A6;
-    --navy-light: #1D4F91;
-    --cyan: #06B6D4;
-    --cyan-light: #A5F3FC;
-    --bg: #F8FAFC;
-    --white: #FFFFFF;
-    --text: #1E293B;
-    --muted: #64748B;
-    --border: #E2E8F0;
+    --navy: #2563a6;
+    --navy-light: #1d4f91;
+    --cyan: #06b6d4;
+    --cyan-light: #a5f3fc;
+    --bg: #f8fafc;
+    --white: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
     --green: #059669;
-    --red: #DC2626;
-    --shadow: 0 8px 24px rgba(37, 99, 166, 0.10);
+    --red: #dc2626;
+    --shadow: 0 8px 24px rgba(37, 99, 166, 0.1);
 }
 
 * {
@@ -50,8 +44,6 @@ button {
     cursor: pointer;
 }
 
-/* LAYOUT */
-
 .container {
     display: flex;
     min-height: 100vh;
@@ -64,8 +56,6 @@ button {
     background: var(--bg);
 }
 
-/* SIDEBAR */
-
 .sidebar {
     position: fixed;
     z-index: 100;
@@ -76,8 +66,8 @@ button {
     flex-direction: column;
     width: 260px;
     padding: 24px 16px;
-    color: #FFFFFF;
-    background: linear-gradient(180deg, #2563A6 0%, #1D4F91 100%);
+    color: #ffffff;
+    background: linear-gradient(180deg, #2563a6 0%, #1d4f91 100%);
     transition: transform 0.25s ease;
 }
 
@@ -94,7 +84,7 @@ button {
     align-items: center;
     gap: 10px;
     min-width: 0;
-    color: #FFFFFF;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -118,7 +108,7 @@ button {
 }
 
 .logo-text {
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 20px;
     font-weight: 700;
     white-space: nowrap;
@@ -131,14 +121,14 @@ button {
 .sidebar-close {
     display: none;
     border: 0;
-    color: #FFFFFF;
+    color: #ffffff;
     background: transparent;
     font-size: 22px;
 }
 
 .nav-label {
     margin: 0 0 14px 10px;
-    color: #EAF3FA;
+    color: #eaf3fa;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.4px;
@@ -157,18 +147,20 @@ button {
     min-height: 46px;
     padding: 12px 14px;
     border-radius: 10px;
-    color: #F0F7FC;
+    color: #f0f7fc;
     text-decoration: none;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
 }
 
 .nav-link:hover {
-    color: #FFFFFF;
+    color: #ffffff;
     background: rgba(255, 255, 255, 0.16);
 }
 
 .nav-link.active {
-    color: #FFFFFF;
+    color: #ffffff;
     background: var(--cyan);
     font-weight: 700;
 }
@@ -211,7 +203,7 @@ button {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    color: #FFFFFF;
+    color: #ffffff;
     background: var(--cyan);
     font-weight: 700;
 }
@@ -225,14 +217,14 @@ button {
 
 .user-info strong {
     overflow: hidden;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 13px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .user-info small {
-    color: #EAF3FA;
+    color: #eaf3fa;
     font-size: 11px;
 }
 
@@ -249,23 +241,19 @@ button {
     padding: 10px 14px;
     border: 0;
     border-radius: 10px;
-    color: #FFFFFF;
+    color: #ffffff;
     background: transparent;
     text-align: left;
 }
 
 .logout:hover {
-    color: #FFFFFF;
+    color: #ffffff;
     background: rgba(220, 38, 38, 0.25);
 }
-
-/* SIDEBAR OVERLAY */
 
 .sidebar-overlay {
     display: none;
 }
-
-/* TOPBAR */
 
 .content {
     margin-left: 260px;
@@ -304,7 +292,7 @@ button {
     border: 1px solid var(--border);
     border-radius: 10px;
     color: var(--navy-light);
-    background: #FFFFFF;
+    background: #ffffff;
     font-size: 21px;
 }
 
@@ -320,7 +308,7 @@ button {
     border: 1px solid var(--border);
     border-radius: 12px;
     color: var(--text);
-    background: #FFFFFF;
+    background: #ffffff;
 }
 
 .account-avatar {
@@ -352,7 +340,7 @@ button {
     padding: 6px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: var(--shadow);
 }
 
@@ -371,10 +359,8 @@ button {
 
 .account-menu a:hover {
     color: var(--navy-light);
-    background: #EFF6FC;
+    background: #eff6fc;
 }
-
-/* WELCOME */
 
 .welcome {
     position: relative;
@@ -387,8 +373,8 @@ button {
     padding: 30px;
     overflow: hidden;
     border-radius: 18px;
-    color: #FFFFFF;
-    background: linear-gradient(120deg, #2563A6, #1D4F91);
+    color: #ffffff;
+    background: linear-gradient(120deg, #2563a6, #1d4f91);
     box-shadow: var(--shadow);
 }
 
@@ -401,7 +387,7 @@ button {
 .welcome-label {
     display: inline-block;
     margin-bottom: 13px;
-    color: #CFFAFE;
+    color: #cffafe;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.4px;
@@ -417,7 +403,7 @@ button {
 .welcome p {
     max-width: 540px;
     margin: 0;
-    color: #F0F7FC;
+    color: #f0f7fc;
     font-size: 14px;
     line-height: 1.7;
 }
@@ -432,8 +418,6 @@ button {
     line-height: 1;
 }
 
-/* SUMMARY CARDS */
-
 .cards {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -446,7 +430,7 @@ button {
     padding: 23px;
     border: 1px solid var(--border);
     border-radius: 16px;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: var(--shadow);
 }
 
@@ -477,17 +461,17 @@ button {
 
 .pemasukan .card-icon {
     color: #047857;
-    background: #D1FAE5;
+    background: #d1fae5;
 }
 
 .pengeluaran .card-icon {
-    color: #B91C1C;
-    background: #FEE2E2;
+    color: #b91c1c;
+    background: #fee2e2;
 }
 
 .omzet .card-icon {
-    color: #087E9B;
-    background: #CFFAFE;
+    color: #087e9b;
+    background: #cffafe;
 }
 
 .card h2 {
@@ -503,14 +487,12 @@ button {
     font-size: 12px;
 }
 
-/* TRANSACTION TABLE */
-
 .transaction {
     margin-bottom: 28px;
     padding: 25px;
     border: 1px solid var(--border);
     border-radius: 16px;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: var(--shadow);
 }
 
@@ -542,7 +524,7 @@ button {
     min-height: 42px;
     padding: 11px 16px;
     border-radius: 9px;
-    color: #FFFFFF;
+    color: #ffffff;
     background: var(--navy-light);
     font-size: 13px;
     font-weight: 700;
@@ -551,7 +533,7 @@ button {
 }
 
 .primary-button:hover {
-    background: #173F75;
+    background: #173f75;
 }
 
 .table-wrapper {
@@ -566,7 +548,7 @@ table {
 }
 
 thead {
-    background: #EFF6FC;
+    background: #eff6fc;
 }
 
 th {
@@ -581,7 +563,7 @@ th {
 
 td {
     padding: 16px 15px;
-    border-bottom: 1px solid #EDF2F7;
+    border-bottom: 1px solid #edf2f7;
     color: var(--text);
     font-size: 13px;
 }
@@ -605,12 +587,12 @@ tbody tr:last-child td {
 
 .jenis-pemasukan {
     color: #047857;
-    background: #D1FAE5;
+    background: #d1fae5;
 }
 
 .jenis-pengeluaran {
-    color: #B91C1C;
-    background: #FEE2E2;
+    color: #b91c1c;
+    background: #fee2e2;
 }
 
 .transaction-amount {
@@ -631,7 +613,7 @@ tbody tr:last-child td {
 }
 
 .empty .empty-icon {
-    color: #94A3B8;
+    color: #94a3b8;
     font-size: 28px;
 }
 
@@ -645,16 +627,12 @@ tbody tr:last-child td {
     font-size: 12px;
 }
 
-/* FOOTER */
-
 .dashboard-footer {
     padding: 8px 0 4px;
     color: var(--muted);
     font-size: 12px;
     text-align: center;
 }
-
-/* RESPONSIVE */
 
 @media (max-width: 1100px) {
     .content {
@@ -818,8 +796,6 @@ tbody tr:last-child td {
     }
 }
 
-/* PERBAIKAN TOMBOL BUKA-TUTUP SIDEBAR */
-
 .menu-toggle {
     display: inline-flex;
     align-items: center;
@@ -827,18 +803,16 @@ tbody tr:last-child td {
     flex-shrink: 0;
     width: 42px;
     height: 42px;
-    border: 1px solid #E2E8F0;
+    border: 1px solid #e2e8f0;
     border-radius: 10px;
-    color: #1D4F91;
-    background: #FFFFFF;
+    color: #1d4f91;
+    background: #ffffff;
     cursor: pointer;
 }
 
 .menu-toggle:hover {
-    background: #E0F2FE;
+    background: #e0f2fe;
 }
-
-/* SIDEBAR TERLIPAT DI DESKTOP */
 
 @media (min-width: 851px) {
     body.sidebar-collapsed .sidebar {

@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class RestokController extends Controller
 {
-    // MENAMBAHKAN STOK DAN MENYIMPAN RIWAYAT
     public function store(Request $request, $barangId)
     {
         $data = $request->validate([

@@ -1,13 +1,4 @@
-
-/* ========================================
-   PROFITPILOT - HALAMAN OMZET
-   Mengikuti desain Dashboard
-======================================== */
-
-@import url("./dashboard.css");
-
-
-/* SIDEBAR TAMBAHAN */
+@import url('./dashboard.css');
 
 .profile-link {
     display: flex;
@@ -33,9 +24,6 @@
     flex-shrink: 0;
 }
 
-
-/* JUDUL HALAMAN */
-
 .page-heading {
     display: flex;
     align-items: center;
@@ -47,7 +35,7 @@
 .eyebrow {
     display: inline-block;
     margin-bottom: 9px;
-    color: #06B6D4;
+    color: #06b6d4;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.3px;
@@ -67,9 +55,6 @@
     line-height: 1.6;
 }
 
-
-/* KARTU RINGKASAN OMZET */
-
 .summary {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -84,7 +69,9 @@
     border-radius: 16px;
     background: var(--white);
     box-shadow: var(--shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .summary-card:hover {
@@ -116,17 +103,17 @@
 
 .pemasukan .summary-icon {
     color: #047857;
-    background: #D1FAE5;
+    background: #d1fae5;
 }
 
 .pengeluaran .summary-icon {
-    color: #B91C1C;
-    background: #FEE2E2;
+    color: #b91c1c;
+    background: #fee2e2;
 }
 
 .omzet .summary-icon {
-    color: #1D4F91;
-    background: #DBEAFE;
+    color: #1d4f91;
+    background: #dbeafe;
 }
 
 .summary-label {
@@ -150,9 +137,6 @@
     font-size: 12px;
     line-height: 1.5;
 }
-
-
-/* KARTU GRAFIK DAN RIWAYAT */
 
 .chart-card,
 .table-card {
@@ -180,8 +164,8 @@
     height: 43px;
     flex-shrink: 0;
     border-radius: 12px;
-    color: #1D4F91;
-    background: #DBEAFE;
+    color: #1d4f91;
+    background: #dbeafe;
 }
 
 .section-icon svg {
@@ -203,9 +187,6 @@
     line-height: 1.5;
 }
 
-
-/* GRAFIK OMZET */
-
 .grafik-container {
     position: relative;
     width: 100%;
@@ -218,9 +199,6 @@
     width: 100% !important;
     height: 100% !important;
 }
-
-
-/* TABEL RIWAYAT OMZET */
 
 .table-wrapper {
     width: 100%;
@@ -236,7 +214,7 @@
 }
 
 .table-wrapper thead {
-    background: #F8FAFC;
+    background: #f8fafc;
 }
 
 .table-wrapper th {
@@ -251,7 +229,7 @@
 
 .table-wrapper td {
     padding: 15px 16px;
-    border-bottom: 1px solid #EDF2F7;
+    border-bottom: 1px solid #edf2f7;
     color: var(--text);
     font-size: 13px;
     white-space: nowrap;
@@ -262,7 +240,7 @@
 }
 
 .table-wrapper tbody tr:hover:not(.total-row) {
-    background: #F8FAFC;
+    background: #f8fafc;
 }
 
 .income-cell {
@@ -271,27 +249,24 @@
 }
 
 .expense-cell {
-    color: #B91C1C !important;
+    color: #b91c1c !important;
     font-weight: 700;
 }
 
 .omzet-cell {
-    color: #1D4F91 !important;
+    color: #1d4f91 !important;
     font-weight: 700;
 }
 
 .total-row {
-    background: #EFF6FF;
+    background: #eff6ff;
 }
 
 .total-row td {
-    border-top: 2px solid #BFDBFE;
+    border-top: 2px solid #bfdbfe;
     color: var(--navy);
     font-weight: 700;
 }
-
-
-/* DATA KOSONG */
 
 .empty {
     padding: 35px 15px;
@@ -303,7 +278,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 12px;
-    color: #94A3B8;
+    color: #94a3b8;
 }
 
 .empty-icon svg {
@@ -325,9 +300,6 @@
     line-height: 1.6;
 }
 
-
-/* FOOTER */
-
 .page-footer {
     padding: 8px 0 12px;
     color: var(--muted);
@@ -336,15 +308,9 @@
     text-align: center;
 }
 
-
-/* BOTTOM NAVBAR DINONAKTIFKAN */
-
 .mobile-bottom-nav {
     display: none !important;
 }
-
-
-/* TABLET */
 
 @media (max-width: 1100px) {
     .summary {
@@ -360,9 +326,6 @@
         padding: 22px;
     }
 }
-
-
-/* MOBILE */
 
 @media (max-width: 850px) {
     .content {
@@ -395,9 +358,6 @@
         height: 280px;
     }
 }
-
-
-/* HP KECIL */
 
 @media (max-width: 480px) {
     .content {

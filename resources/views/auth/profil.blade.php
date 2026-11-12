@@ -9,22 +9,20 @@
     <link rel="stylesheet" href="{{ asset('css/barang.css') }}">
 
     <style>
-        /* KHUSUS HALAMAN PROFIL */
-
         .profile-card {
             max-width: 760px;
             margin: 0 auto;
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(37,99,166,.06);
+            box-shadow: 0 8px 25px rgba(37, 99, 166, 0.06);
             overflow: hidden;
         }
 
         .profile-banner {
             height: 115px;
             position: relative;
-            background: linear-gradient(120deg, #2563A6, #1D4F91);
+            background: linear-gradient(120deg, #2563a6, #1d4f91);
         }
 
         .profile-avatar {
@@ -36,11 +34,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #FFFFFF;
-            border: 5px solid #FFFFFF;
+            background: #ffffff;
+            border: 5px solid #ffffff;
             border-radius: 18px;
-            color: #2563A6;
-            box-shadow: 0 4px 12px rgba(37,99,166,.12);
+            color: #2563a6;
+            box-shadow: 0 4px 12px rgba(37, 99, 166, 0.12);
         }
 
         .profile-avatar svg {
@@ -54,7 +52,7 @@
 
         .profile-name {
             margin: 0;
-            color: #2563A6;
+            color: #2563a6;
             font-size: 22px;
             font-weight: 700;
             overflow-wrap: anywhere;
@@ -62,15 +60,15 @@
 
         .profile-caption {
             margin-top: 6px;
-            color: #64748B;
+            color: #64748b;
             font-size: 13px;
         }
 
         .profile-section-heading {
             margin: 30px 0 17px;
             padding-bottom: 13px;
-            border-bottom: 1px solid #E2E8F0;
-            color: #2563A6;
+            border-bottom: 1px solid #e2e8f0;
+            color: #2563a6;
             font-size: 15px;
             font-weight: 700;
         }
@@ -84,9 +82,9 @@
         .info-item {
             min-width: 0;
             padding: 18px;
-            border: 1px solid #E2E8F0;
+            border: 1px solid #e2e8f0;
             border-radius: 11px;
-            background: #F8FAFC;
+            background: #f8fafc;
         }
 
         .info-label {
@@ -94,7 +92,7 @@
             align-items: center;
             gap: 8px;
             margin-bottom: 12px;
-            color: #64748B;
+            color: #64748b;
             font-size: 12px;
             font-weight: 600;
         }
@@ -102,13 +100,13 @@
         .info-label svg {
             width: 17px;
             height: 17px;
-            color: #06B6D4;
+            color: #06b6d4;
             flex-shrink: 0;
         }
 
         .info-item strong {
             display: block;
-            color: #1E293B;
+            color: #1e293b;
             font-size: 15px;
             overflow-wrap: anywhere;
         }
@@ -123,7 +121,7 @@
             gap: 12px;
             margin-top: 27px;
             padding-top: 22px;
-            border-top: 1px solid #E2E8F0;
+            border-top: 1px solid #e2e8f0;
         }
 
         .profile-edit-button,
@@ -138,28 +136,28 @@
             text-decoration: none;
             font-size: 13px;
             font-weight: 700;
-            transition: .2s;
+            transition: 0.2s;
         }
 
         .profile-edit-button {
-            background: #2563A6;
-            color: #FFFFFF;
+            background: #2563a6;
+            color: #ffffff;
         }
 
         .profile-edit-button:hover {
-            background: #1D4F91;
+            background: #1d4f91;
             transform: translateY(-1px);
         }
 
         .profile-back-button {
-            background: #FFFFFF;
-            color: #64748B;
-            border: 1px solid #E2E8F0;
+            background: #ffffff;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
         }
 
         .profile-back-button:hover {
-            background: #F8FAFC;
-            color: #2563A6;
+            background: #f8fafc;
+            color: #2563a6;
         }
 
         .profile-buttons svg {
@@ -210,7 +208,6 @@
 
 <div class="container">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
 
         <div class="sidebar-brand">
@@ -358,10 +355,8 @@
 
     </aside>
 
-    <!-- CONTENT -->
     <main class="content">
 
-        <!-- TOPBAR -->
         <header class="topbar">
 
             <div class="topbar-left">
@@ -409,7 +404,6 @@
 
         </header>
 
-        <!-- PAGE HEADING -->
         <section class="page-heading">
             <div>
                 <span class="eyebrow">PENGATURAN AKUN</span>
@@ -418,7 +412,6 @@
             </div>
         </section>
 
-        <!-- PROFILE CARD -->
         <section class="profile-card">
 
             <div class="profile-banner">
@@ -450,7 +443,6 @@
 
                 <div class="profile-info">
 
-                    <!-- NAMA TOKO -->
                     <div class="info-item">
 
                         <div class="info-label">
@@ -468,7 +460,6 @@
 
                     </div>
 
-                    <!-- PASSWORD -->
                     <div class="info-item">
 
                         <div class="info-label">
@@ -487,7 +478,6 @@
 
                     </div>
 
-                    <!-- TANGGAL DAFTAR -->
                     <div class="info-item">
 
                         <div class="info-label">
@@ -508,7 +498,6 @@
 
                 </div>
 
-                <!-- BUTTONS -->
                 <div class="profile-buttons">
 
                     <a href="{{ route('profil.edit') }}" class="profile-edit-button">
@@ -545,7 +534,6 @@
 
 </div>
 
-<!-- NAVIGASI BAWAH MOBILE -->
 <nav class="mobile-bottom-nav">
 
     <a href="{{ url('/dashboard') }}"
@@ -600,59 +588,59 @@
 </nav>
 
 <script>
-function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("sidebarOverlay");
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
 
-    if (!sidebar) return;
+        if (!sidebar) return;
 
-    if (window.innerWidth <= 850) {
-        const isOpen = sidebar.classList.toggle("open");
+        if (window.innerWidth <= 850) {
+            const isOpen = sidebar.classList.toggle('open');
 
-        if (overlay) {
-            overlay.classList.toggle("show", isOpen);
-        }
-    } else {
-        document.body.classList.toggle("sidebar-collapsed");
-    }
-}
-
-function toggleAccount() {
-    const menu = document.getElementById("accountMenu");
-    const button = document.querySelector(".account-button");
-
-    if (!menu || !button) return;
-
-    const isOpen = menu.classList.toggle("show");
-    button.setAttribute("aria-expanded", isOpen);
-}
-
-document.addEventListener("click", function(event) {
-    const account = document.querySelector(".account");
-    const menu = document.getElementById("accountMenu");
-    const button = document.querySelector(".account-button");
-
-    if (account && !account.contains(event.target) && menu) {
-        menu.classList.remove("show");
-
-        if (button) {
-            button.setAttribute("aria-expanded", "false");
+            if (overlay) {
+                overlay.classList.toggle('show', isOpen);
+            }
+        } else {
+            document.body.classList.toggle('sidebar-collapsed');
         }
     }
-});
 
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-        const menu = document.getElementById("accountMenu");
-        const button = document.querySelector(".account-button");
+    function toggleAccount() {
+        const menu = document.getElementById('accountMenu');
+        const button = document.querySelector('.account-button');
 
-        if (menu) menu.classList.remove("show");
+        if (!menu || !button) return;
 
-        if (button) {
-            button.setAttribute("aria-expanded", "false");
-        }
+        const isOpen = menu.classList.toggle('show');
+        button.setAttribute('aria-expanded', isOpen);
     }
-});
+
+    document.addEventListener('click', function (event) {
+        const account = document.querySelector('.account');
+        const menu = document.getElementById('accountMenu');
+        const button = document.querySelector('.account-button');
+
+        if (account && !account.contains(event.target) && menu) {
+            menu.classList.remove('show');
+
+            if (button) {
+                button.setAttribute('aria-expanded', 'false');
+            }
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            const menu = document.getElementById('accountMenu');
+            const button = document.querySelector('.account-button');
+
+            if (menu) menu.classList.remove('show');
+
+            if (button) {
+                button.setAttribute('aria-expanded', 'false');
+            }
+        }
+    });
 </script>
 
 </body>

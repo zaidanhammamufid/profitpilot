@@ -430,218 +430,216 @@
 </div>
 
 <script>
-const barang = @json($barang);
+    const barang = @json($barang);
 
-const jenis = document.getElementById('jenis');
-const modeSection = document.getElementById('modeSection');
-const modePemasukan = document.getElementById('mode_pemasukan');
-const barangSection = document.getElementById('barangSection');
-const itemsContainer = document.getElementById('itemsContainer');
-const jumlah = document.getElementById('jumlah');
-const totalPenjualan = document.getElementById('totalPenjualan');
-const tambahBarang = document.getElementById('tambahBarang');
-const transaksiForm = document.getElementById('transaksiForm');
+    const jenis = document.getElementById('jenis');
+    const modeSection = document.getElementById('modeSection');
+    const modePemasukan = document.getElementById('mode_pemasukan');
+    const barangSection = document.getElementById('barangSection');
+    const itemsContainer = document.getElementById('itemsContainer');
+    const jumlah = document.getElementById('jumlah');
+    const totalPenjualan = document.getElementById('totalPenjualan');
+    const tambahBarang = document.getElementById('tambahBarang');
+    const transaksiForm = document.getElementById('transaksiForm');
 
-function rupiah(angka) {
-    return new Intl.NumberFormat('id-ID').format(angka);
-}
+    function rupiah(angka) {
+        return new Intl.NumberFormat('id-ID').format(angka);
+    }
 
-function updateJenis() {
-    const pemasukan = jenis.value === 'pemasukan';
+    function updateJenis() {
+        const pemasukan = jenis.value === 'pemasukan';
 
-    modeSection.style.display = pemasukan ? 'block' : 'none';
-    modePemasukan.disabled = !pemasukan;
+        modeSection.style.display = pemasukan ? 'block' : 'none';
+        modePemasukan.disabled = !pemasukan;
 
-    updateMode();
-}
+        updateMode();
+    }
 
-function updateMode() {
-    const pemasukan = jenis.value === 'pemasukan';
-    const penjualan = pemasukan && modePemasukan.value === 'barang';
+    function updateMode() {
+        const pemasukan = jenis.value === 'pemasukan';
+        const penjualan = pemasukan && modePemasukan.value === 'barang';
 
-    barangSection.style.display = penjualan ? 'block' : 'none';
-    jumlah.disabled = penjualan;
-    jumlah.required = !penjualan;
+        barangSection.style.display = penjualan ? 'block' : 'none';
+        jumlah.disabled = penjualan;
+        jumlah.required = !penjualan;
 
-    if (penjualan) {
-        jumlah.value = '';
+        if (penjualan) {
+            jumlah.value = '';
 
-        if (itemsContainer.children.length === 0) {
-            tambahBarisBarang();
+            if (itemsContainer.children.length === 0) {
+                tambahBarisBarang();
+            }
+        } else {
+            itemsContainer.innerHTML = '';
+            hitungTotal();
         }
-    } else {
-        itemsContainer.innerHTML = '';
+    }
+
+    function tambahBarisBarang() {
+        if (barang.length === 0) {
+            alert('Belum ada barang aktif. Tambahkan barang terlebih dahulu di menu Data Barang.');
+            return;
+        }
+
+        const row = document.createElement('div');
+        row.className = 'item-row';
+
+        const productGroup = document.createElement('div');
+        productGroup.className = 'form-group';
+
+        const labelBarang = document.createElement('label');
+        labelBarang.textContent = 'Pilih Barang';
+
+        const select = document.createElement('select');
+        select.name = `items[${itemsContainer.children.length}][barang_id]`;
+        select.required = true;
+
+        const empty = document.createElement('option');
+        empty.value = '';
+        empty.textContent = 'Pilih barang';
+        select.appendChild(empty);
+
+        barang.forEach((item) => {
+            const option = document.createElement('option');
+            option.value = item.id;
+            option.textContent = `${item.nama_barang} — Rp ${rupiah(Number(item.harga))} (Stok: ${item.stok})`;
+            option.dataset.harga = Number(item.harga);
+            option.dataset.stok = Number(item.stok);
+            select.appendChild(option);
+        });
+
+        productGroup.append(labelBarang, select);
+
+        const qtyGroup = document.createElement('div');
+        qtyGroup.className = 'form-group';
+
+        const labelQty = document.createElement('label');
+        labelQty.textContent = 'Jumlah';
+
+        const qty = document.createElement('input');
+        qty.type = 'number';
+        qty.name = `items[${itemsContainer.children.length}][jumlah_barang]`;
+        qty.min = '1';
+        qty.step = '1';
+        qty.value = '1';
+        qty.required = true;
+
+        qtyGroup.append(labelQty, qty);
+
+        const subtotal = document.createElement('div');
+        subtotal.className = 'item-subtotal';
+        subtotal.textContent = 'Subtotal: Rp 0';
+
+        const remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'remove-item';
+        remove.textContent = 'Hapus';
+
+        remove.addEventListener('click', () => {
+            row.remove();
+            rapikanNamaInput();
+            hitungTotal();
+        });
+
+        select.addEventListener('change', () => {
+            const option = select.options[select.selectedIndex];
+            const stok = Number(option.dataset.stok || 0);
+
+            qty.max = stok > 0 ? String(stok) : '0';
+            hitungTotal();
+        });
+
+        qty.addEventListener('input', hitungTotal);
+
+        const fields = document.createElement('div');
+        fields.className = 'item-fields';
+        fields.append(productGroup, qtyGroup);
+
+        row.append(fields, subtotal, remove);
+        itemsContainer.appendChild(row);
+
         hitungTotal();
     }
-}
 
-function tambahBarisBarang() {
-    if (barang.length === 0) {
-        alert('Belum ada barang aktif. Tambahkan barang terlebih dahulu di menu Data Barang.');
-        return;
+    function rapikanNamaInput() {
+        Array.from(itemsContainer.children).forEach((row, index) => {
+            row.querySelector('select').name = `items[${index}][barang_id]`;
+            row.querySelector('input').name = `items[${index}][jumlah_barang]`;
+        });
     }
 
-    const row = document.createElement('div');
-    row.className = 'item-row';
+    function hitungTotal() {
+        let total = 0;
 
-    const productGroup = document.createElement('div');
-    productGroup.className = 'form-group';
+        Array.from(itemsContainer.children).forEach((row) => {
+            const select = row.querySelector('select');
+            const qty = row.querySelector('input');
+            const option = select.options[select.selectedIndex];
 
-    const labelBarang = document.createElement('label');
-    labelBarang.textContent = 'Pilih Barang';
+            const harga = Number(option?.dataset.harga || 0);
+            const jumlahBarang = Number(qty.value || 0);
+            const subtotal = harga * jumlahBarang;
 
-    const select = document.createElement('select');
-    select.name = `items[${itemsContainer.children.length}][barang_id]`;
-    select.required = true;
+            total += subtotal;
+            row.querySelector('.item-subtotal').textContent = 'Subtotal: Rp ' + rupiah(subtotal);
+        });
 
-    const empty = document.createElement('option');
-    empty.value = '';
-    empty.textContent = 'Pilih barang';
-    select.appendChild(empty);
-
-    barang.forEach(item => {
-        const option = document.createElement('option');
-        option.value = item.id;
-        option.textContent =
-            `${item.nama_barang} — Rp ${rupiah(Number(item.harga))} (Stok: ${item.stok})`;
-        option.dataset.harga = Number(item.harga);
-        option.dataset.stok = Number(item.stok);
-        select.appendChild(option);
-    });
-
-    productGroup.append(labelBarang, select);
-
-    const qtyGroup = document.createElement('div');
-    qtyGroup.className = 'form-group';
-
-    const labelQty = document.createElement('label');
-    labelQty.textContent = 'Jumlah';
-
-    const qty = document.createElement('input');
-    qty.type = 'number';
-    qty.name = `items[${itemsContainer.children.length}][jumlah_barang]`;
-    qty.min = '1';
-    qty.step = '1';
-    qty.value = '1';
-    qty.required = true;
-
-    qtyGroup.append(labelQty, qty);
-
-    const subtotal = document.createElement('div');
-    subtotal.className = 'item-subtotal';
-    subtotal.textContent = 'Subtotal: Rp 0';
-
-    const remove = document.createElement('button');
-    remove.type = 'button';
-    remove.className = 'remove-item';
-    remove.textContent = 'Hapus';
-
-    remove.addEventListener('click', () => {
-        row.remove();
-        rapikanNamaInput();
-        hitungTotal();
-    });
-
-    select.addEventListener('change', () => {
-        const option = select.options[select.selectedIndex];
-        const stok = Number(option.dataset.stok || 0);
-
-        qty.max = stok > 0 ? String(stok) : '0';
-        hitungTotal();
-    });
-
-    qty.addEventListener('input', hitungTotal);
-
-    const fields = document.createElement('div');
-    fields.className = 'item-fields';
-    fields.append(productGroup, qtyGroup);
-
-    row.append(fields, subtotal, remove);
-    itemsContainer.appendChild(row);
-
-    hitungTotal();
-}
-
-function rapikanNamaInput() {
-    Array.from(itemsContainer.children).forEach((row, index) => {
-        row.querySelector('select').name = `items[${index}][barang_id]`;
-        row.querySelector('input').name = `items[${index}][jumlah_barang]`;
-    });
-}
-
-function hitungTotal() {
-    let total = 0;
-
-    Array.from(itemsContainer.children).forEach(row => {
-        const select = row.querySelector('select');
-        const qty = row.querySelector('input');
-        const option = select.options[select.selectedIndex];
-
-        const harga = Number(option?.dataset.harga || 0);
-        const jumlahBarang = Number(qty.value || 0);
-        const subtotal = harga * jumlahBarang;
-
-        total += subtotal;
-        row.querySelector('.item-subtotal').textContent =
-            'Subtotal: Rp ' + rupiah(subtotal);
-    });
-
-    totalPenjualan.textContent = 'Rp ' + rupiah(total);
-}
-
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-
-    if (window.innerWidth <= 850) {
-        sidebar.classList.toggle('open');
-        overlay.classList.toggle('show');
-    } else {
-        document.body.classList.toggle('sidebar-collapsed');
+        totalPenjualan.textContent = 'Rp ' + rupiah(total);
     }
-}
 
-function toggleAccount() {
-    const menu = document.getElementById('accountMenu');
-    const button = document.querySelector('.account-button');
-    const isOpen = menu.classList.toggle('show');
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
 
-    button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-}
-
-document.addEventListener('click', function(event) {
-    const account = document.querySelector('.account');
-    const menu = document.getElementById('accountMenu');
-    const button = document.querySelector('.account-button');
-
-    if (account && !account.contains(event.target)) {
-        menu.classList.remove('show');
-        button.setAttribute('aria-expanded', 'false');
+        if (window.innerWidth <= 850) {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        } else {
+            document.body.classList.toggle('sidebar-collapsed');
+        }
     }
-});
 
-window.addEventListener('resize', function() {
-    if (window.innerWidth > 850) {
-        document.getElementById('sidebar').classList.remove('open');
-        document.getElementById('sidebarOverlay').classList.remove('show');
-    } else {
-        document.body.classList.remove('sidebar-collapsed');
+    function toggleAccount() {
+        const menu = document.getElementById('accountMenu');
+        const button = document.querySelector('.account-button');
+        const isOpen = menu.classList.toggle('show');
+
+        button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     }
-});
 
-tambahBarang.addEventListener('click', tambahBarisBarang);
-jenis.addEventListener('change', updateJenis);
-modePemasukan.addEventListener('change', updateMode);
+    document.addEventListener('click', function (event) {
+        const account = document.querySelector('.account');
+        const menu = document.getElementById('accountMenu');
+        const button = document.querySelector('.account-button');
 
-transaksiForm.addEventListener('reset', function() {
-    setTimeout(function() {
-        itemsContainer.innerHTML = '';
-        totalPenjualan.textContent = 'Rp 0';
-        updateJenis();
-    }, 0);
-});
+        if (account && !account.contains(event.target)) {
+            menu.classList.remove('show');
+            button.setAttribute('aria-expanded', 'false');
+        }
+    });
 
-updateJenis();
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 850) {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('show');
+        } else {
+            document.body.classList.remove('sidebar-collapsed');
+        }
+    });
+
+    tambahBarang.addEventListener('click', tambahBarisBarang);
+    jenis.addEventListener('change', updateJenis);
+    modePemasukan.addEventListener('change', updateMode);
+
+    transaksiForm.addEventListener('reset', function () {
+        setTimeout(function () {
+            itemsContainer.innerHTML = '';
+            totalPenjualan.textContent = 'Rp 0';
+            updateJenis();
+        }, 0);
+    });
+
+    updateJenis();
 </script>
 
 </body>
