@@ -1,0 +1,265 @@
+/* Halaman detail user */
+
+.detail-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 11px 16px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.back-link:hover {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+.back-link svg {
+    width: 17px;
+    height: 17px;
+}
+
+.content-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    box-shadow: 0 8px 25px rgba(37, 99, 166, 0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 25px 30px;
+    background: linear-gradient(120deg, var(--navy), var(--navy-light));
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.header-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+}
+
+.header-icon svg {
+    width: 27px;
+    height: 27px;
+}
+
+.card-header h2 {
+    font-size: 19px;
+    margin-bottom: 6px;
+}
+
+.card-header p {
+    color: #e0f2fe;
+    font-size: 13px;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.section-title {
+    color: var(--navy);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.detail-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.content-card .detail-item {
+    padding: 19px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #f8fafc;
+    min-width: 0;
+}
+
+.detail-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.detail-label svg {
+    width: 17px;
+    height: 17px;
+    color: var(--cyan);
+}
+
+.detail-value {
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.password-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 20px;
+}
+
+.password-button {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.password-button:hover {
+    background: #ecfeff;
+    color: var(--cyan);
+    border-color: var(--cyan);
+}
+
+.password-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.eye-off {
+    display: none;
+}
+
+.card-footer {
+    padding: 20px 30px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.footer-note {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 12px 19px;
+    border-radius: 9px;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.footer-button:hover {
+    background: var(--navy-light);
+    transform: translateY(-1px);
+}
+
+.footer-button.secondary {
+    background: #eff6ff;
+    color: var(--navy);
+    box-shadow: inset 0 0 0 1px #dbeafe;
+}
+
+.footer-button.secondary:hover {
+    background: #dbeafe;
+}
+
+.footer-button svg {
+    width: 17px;
+    height: 17px;
+}
+
+@media (max-width: 768px) {
+    .detail-heading {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .back-link {
+        width: 100%;
+    }
+
+    .card-header {
+        padding: 21px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .detail-list {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .content-card .detail-item {
+        padding: 17px;
+    }
+
+    .card-footer {
+        padding: 18px 20px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .footer-note {
+        text-align: center;
+    }
+
+    .footer-actions {
+        flex-direction: column-reverse;
+    }
+
+    .footer-button {
+        width: 100%;
+    }
+}

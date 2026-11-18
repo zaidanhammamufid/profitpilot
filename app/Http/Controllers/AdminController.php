@@ -87,9 +87,9 @@ class AdminController extends Controller
             ->where('role', 'user')
             ->firstOrFail();
 
-        return view('admin.edit-user', compact(
-            'user'
-        ));
+        return redirect()->route('admin.users', [
+            'edit' => $user->id,
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -118,7 +118,9 @@ class AdminController extends Controller
 
         $user->save();
 
-        return redirect('/admin/users');
+        return redirect()
+            ->route('admin.users')
+            ->with('status', 'Data user berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -129,6 +131,8 @@ class AdminController extends Controller
 
         $user->delete();
 
-        return redirect('/admin/users');
+        return redirect()
+            ->route('admin.users')
+            ->with('status', 'User berhasil dihapus.');
     }
 }

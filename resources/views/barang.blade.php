@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0F2A43">
-    <title>ProfitPilot - Data Barang</title>
+    <title>ProfitPilot — Data Barang</title>
+
+    @include('partials.favicon')
     <link rel="stylesheet" href="{{ asset('css/barang.css') }}">
 </head>
 <body>

@@ -1,272 +1,327 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0F2A43">
+@extends('admin.layouts.app')
 
-    <title>Data Users - ProfitPilot</title>
+@section('title', 'ProfitPilot — Data Users')
+@section('page-title', 'Data Users')
 
-    <link rel="stylesheet" href="{{ asset('css/admin/users.css') }}">
-</head>
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/Admin/users.css') }}">
+@endpush
 
-<body>
+@section('content')
 
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <section class="page-intro">
+        <h2>Data Pengguna</h2>
+        <p>
+            Kelola dan lihat seluruh data pengguna ProfitPilot.
+        </p>
+    </section>
 
-<div class="container">
+    @if (session('status'))
+        <div class="alert-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="m8.5 12.5 2.5 2.5 4.5-5"/>
+            </svg>
+            <span>{{ session('status') }}</span>
+        </div>
+    @endif
 
-    <aside class="sidebar" id="sidebar">
+    {{-- Panel edit user, tampil langsung di halaman Data Users --}}
+    <section class="edit-card" id="editUserPanel" @if (! $errors->any()) hidden @endif>
 
-        <div class="brand">
-            <div class="brand-icon">
-                <svg viewBox="0 0 40 40" fill="none">
-                    <rect x="5" y="22" width="6" height="13" rx="2" fill="white"/>
-                    <rect x="16" y="15" width="6" height="20" rx="2" fill="white"/>
-                    <rect x="27" y="7" width="6" height="28" rx="2" fill="white"/>
-                    <path d="M7 17L17 10L24 13L34 4" stroke="#67E8F9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+        <div class="edit-card-header">
+            <div>
+                <p class="edit-label">EDIT DATA USER</p>
+                <h2 id="editUserTitle">Edit Pengguna</h2>
+                <p>Perbarui nama toko atau password pengguna melalui form berikut.</p>
             </div>
 
-            <h2 class="brand-text">Profit<span>Pilot</span></h2>
-
-            <button type="button" class="sidebar-close"
-                    onclick="toggleSidebar()" aria-label="Tutup menu">
+            <button type="button" class="edit-close"
+                    onclick="tutupEditUser()" aria-label="Tutup form edit">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                     <path d="M18 6L6 18M6 6L18 18"/>
                 </svg>
             </button>
         </div>
 
-        <p class="menu-label">MENU UTAMA</p>
+        @if ($errors->any())
+            <div class="form-error" id="editFormError">
+                <strong>Data user belum bisa disimpan:</strong>
 
-        <nav class="sidebar-nav">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-            <a href="{{ url('/admin/dashboard') }}" class="menu-link" title="Dashboard">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="8" height="8" rx="2"/>
-                    <rect x="13" y="3" width="8" height="5" rx="2"/>
-                    <rect x="13" y="10" width="8" height="11" rx="2"/>
-                    <rect x="3" y="13" width="8" height="8" rx="2"/>
-                </svg>
-                <span class="nav-text">Dashboard</span>
-            </a>
+        <form
+            id="editUserForm"
+            action="{{ old('user_id') ? route('admin.user.update', old('user_id')) : '#' }}"
+            method="POST"
+        >
+            @csrf
+            @method('PUT')
 
-            <a href="{{ route('admin.users') }}" class="menu-link active" title="Data Users">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21V19C16 16.8 14.2 15 12 15H6C3.8 15 2 16.8 2 19V21"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M20 21V19C20 17.2 18.8 15.7 17 15.2"/>
-                    <path d="M16 3.2C17.8 3.7 19 5.2 19 7C19 8.8 17.8 10.3 16 10.8"/>
-                </svg>
-                <span class="nav-text">Data Users</span>
-            </a>
+            <input type="hidden" name="user_id" id="editUserId" value="{{ old('user_id') }}">
 
-            <a href="{{ route('admin.profil') }}" class="menu-link" title="Profil">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="8" r="4"/>
-                    <path d="M4 21C4 16.6 7.6 13 12 13C16.4 13 20 16.6 20 21"/>
-                </svg>
-                <span class="nav-text">Profil</span>
-            </a>
+            <div class="edit-form-grid">
 
-        </nav>
+                <div class="form-group">
+                    <label for="editNamaToko">Nama Toko</label>
 
-        <div class="sidebar-bottom">
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
+                    <input
+                        type="text"
+                        id="editNamaToko"
+                        name="nama_toko"
+                        value="{{ old('nama_toko') }}"
+                        placeholder="Masukkan nama toko"
+                        maxlength="100"
+                        required
+                    >
+                </div>
 
-                <button type="submit" class="logout-link" title="Logout">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M10 17L15 12L10 7"/>
-                        <path d="M15 12H3"/>
-                        <path d="M12 3H19C20.1 3 21 3.9 21 5V19C21 20.1 20.1 21 19 21H12"/>
-                    </svg>
-                    <span class="nav-text">Logout</span>
+                <div class="form-group">
+                    <label for="editPassword">Password Baru</label>
+
+                    <input
+                        type="password"
+                        id="editPassword"
+                        name="password"
+                        placeholder="Masukkan password baru"
+                        minlength="6"
+                        autocomplete="new-password"
+                    >
+
+                    <small class="input-hint">
+                        Minimal 6 karakter. Kosongkan jika tidak ingin mengubah password.
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="edit-actions">
+                <button type="button" class="button-cancel" onclick="tutupEditUser()">
+                    Batal
                 </button>
-            </form>
+
+                <button type="submit" class="button-save">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/>
+                        <path d="M17 21v-8H7v8"/>
+                        <path d="M7 3v5h8"/>
+                    </svg>
+                    Simpan Perubahan
+                </button>
+            </div>
+
+        </form>
+
+    </section>
+
+    <section class="table-card">
+
+        <div class="table-heading">
+            <div>
+                <h2>Daftar Pengguna</h2>
+                <p>Informasi akun pengguna yang terdaftar.</p>
+            </div>
         </div>
 
-    </aside>
+        <div class="table-responsive">
 
-    <main class="content">
+            <table>
 
-        <header class="topbar">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Toko</th>
+                        <th>Password</th>
+                        <th>Tanggal Daftar</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
 
-            <div class="topbar-left">
+                <tbody>
 
-                <button type="button" class="menu-toggle"
-                        onclick="toggleSidebar()" aria-label="Buka atau lipat menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                        <path d="M4 6H20M4 12H20M4 18H20"/>
-                    </svg>
-                </button>
+                    @forelse ($users as $index => $user)
 
-                <div>
-                    <p class="topbar-label">ADMIN PANEL</p>
-                    <h1>Data Users</h1>
-                </div>
-
-            </div>
-
-        </header>
-
-        <section class="page-intro">
-            <h2>Data Pengguna</h2>
-            <p>
-                Kelola dan lihat seluruh data pengguna ProfitPilot.
-            </p>
-        </section>
-
-        <section class="table-card">
-
-            <div class="table-heading">
-                <div>
-                    <h2>Daftar Pengguna</h2>
-                    <p>Informasi akun pengguna yang terdaftar.</p>
-                </div>
-            </div>
-
-            <div class="table-responsive">
-
-                <table>
-
-                    <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Nama Toko</th>
-                            <th>Password</th>
-                            <th>Tanggal Daftar</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
 
-                    <tbody>
+                            <td>{{ $index + 1 }}</td>
 
-                        @forelse ($users as $index => $user)
+                            <td class="nama-toko">
+                                {{ $user->nama_toko }}
+                            </td>
 
-                            <tr>
+                            <td>
+                                <div class="password-cell">
 
-                                <td>{{ $index + 1 }}</td>
+                                    <span
+                                        id="password-{{ $user->id }}"
+                                        data-password="{{ $user->password_tampil }}"
+                                    >••••••••</span>
 
-                                <td class="nama-toko">
-                                    {{ $user->nama_toko }}
-                                </td>
+                                    <button
+                                        type="button"
+                                        class="password-button"
+                                        onclick="lihatPassword({{ $user->id }})"
+                                        id="button-{{ $user->id }}"
+                                        aria-label="Lihat password"
+                                    >
+                                        <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M2 12C4.5 7.5 8 5 12 5C16 5 19.5 7.5 22 12C19.5 16.5 16 19 12 19C8 19 4.5 16.5 2 12Z"/>
+                                            <circle cx="12" cy="12" r="3"/>
+                                        </svg>
+                                    </button>
 
-                                <td>
-                                    <div class="password-cell">
+                                </div>
+                            </td>
 
-                                        <span
-                                            id="password-{{ $user->id }}"
-                                            data-password="{{ $user->password_tampil }}"
-                                        >••••••••</span>
+                            <td>
+                                {{ $user->created_at->format('d/m/Y') }}
+                            </td>
 
-                                        <button
-                                            type="button"
-                                            class="password-button"
-                                            onclick="lihatPassword({{ $user->id }})"
-                                            id="button-{{ $user->id }}"
-                                            aria-label="Lihat password"
-                                        >
-                                            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M2 12C4.5 7.5 8 5 12 5C16 5 19.5 7.5 22 12C19.5 16.5 16 19 12 19C8 19 4.5 16.5 2 12Z"/>
-                                                <circle cx="12" cy="12" r="3"/>
-                                            </svg>
+                            <td>
+                                <div class="action-buttons">
+
+                                    <a
+                                        href="{{ route('admin.user.show', $user->id) }}"
+                                        class="detail-button"
+                                    >
+                                        Detail
+                                    </a>
+
+                                    <button
+                                        type="button"
+                                        class="edit-button"
+                                        data-edit-user="{{ $user->id }}"
+                                        data-nama-toko="{{ $user->nama_toko }}"
+                                        data-update-url="{{ route('admin.user.update', $user->id) }}"
+                                        onclick="bukaEditUser({{ $user->id }})"
+                                    >
+                                        Edit
+                                    </button>
+
+                                    <form
+                                        action="{{ route('admin.user.destroy', $user->id) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus user ini?')"
+                                    >
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="delete-button">
+                                            Hapus
                                         </button>
+                                    </form>
 
-                                    </div>
-                                </td>
+                                </div>
+                            </td>
 
-                                <td>
-                                    {{ $user->created_at->format('d/m/Y') }}
-                                </td>
+                        </tr>
 
-                                <td>
-                                    <div class="action-buttons">
+                    @empty
 
-                                        <a
-                                            href="{{ route('admin.user.show', $user->id) }}"
-                                            class="detail-button"
-                                        >
-                                            Detail
-                                        </a>
+                        <tr>
+                            <td colspan="5" class="empty-data">
+                                Belum ada user.
+                            </td>
+                        </tr>
 
-                                        <a
-                                            href="{{ route('admin.user.edit', $user->id) }}"
-                                            class="edit-button"
-                                        >
-                                            Edit
-                                        </a>
+                    @endforelse
 
-                                        <form
-                                            action="{{ route('admin.user.destroy', $user->id) }}"
-                                            method="POST"
-                                            onsubmit="return confirm('Yakin ingin menghapus user ini?')"
-                                        >
-                                            @csrf
-                                            @method('DELETE')
+                </tbody>
 
-                                            <button type="submit" class="delete-button">
-                                                Hapus
-                                            </button>
-                                        </form>
+            </table>
 
-                                    </div>
-                                </td>
+        </div>
 
-                            </tr>
+    </section>
 
-                        @empty
+@endsection
 
-                            <tr>
-                                <td colspan="5" class="empty-data">
-                                    Belum ada user.
-                                </td>
-                            </tr>
+@push('scripts')
+    <script>
+        const editUserPanel = document.getElementById('editUserPanel');
+        const editUserForm = document.getElementById('editUserForm');
+        const editUserId = document.getElementById('editUserId');
+        const editNamaToko = document.getElementById('editNamaToko');
+        const editPassword = document.getElementById('editPassword');
+        const editFormError = document.getElementById('editFormError');
+        const editUserTitle = document.getElementById('editUserTitle');
 
-                        @endforelse
+        function bukaEditUser(id, options = {}) {
+            const trigger = document.querySelector('[data-edit-user="' + id + '"]');
 
-                    </tbody>
+            if (!trigger) {
+                return;
+            }
 
-                </table>
+            editUserForm.action = trigger.dataset.updateUrl;
+            editUserId.value = trigger.dataset.editUser || id;
+            editUserTitle.textContent = 'Edit ' + trigger.dataset.namaToko;
 
-            </div>
+            if (options.pertahankanNilai !== true) {
+                editNamaToko.value = trigger.dataset.namaToko;
+                editPassword.value = '';
+            }
 
-        </section>
+            editUserPanel.hidden = false;
+            editUserPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    </main>
-
-</div>
-
-<script>
-    function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-
-        if (window.innerWidth <= 768) {
-            sidebar.classList.toggle('show');
-            overlay.classList.toggle('active');
-            document.body.classList.toggle('sidebar-open');
-        } else {
-            document.body.classList.toggle('sidebar-collapsed');
+            window.setTimeout(function () {
+                editNamaToko.focus({ preventScroll: true });
+            }, 250);
         }
-    }
 
-    function lihatPassword(id) {
-        const password = document.getElementById('password-' + id);
-        const button = document.getElementById('button-' + id);
+        function tutupEditUser() {
+            editUserPanel.hidden = true;
+            editUserForm.reset();
+            editUserId.value = '';
+            editUserForm.action = '#';
 
-        if (password.textContent.trim() === '••••••••') {
-            password.textContent = password.dataset.password;
-            button.classList.add('password-visible');
-            button.setAttribute('aria-label', 'Sembunyikan password');
-        } else {
-            password.textContent = '••••••••';
-            button.classList.remove('password-visible');
-            button.setAttribute('aria-label', 'Lihat password');
+            if (editFormError) {
+                editFormError.hidden = true;
+            }
+
+            const url = new URL(window.location.href);
+
+            if (url.searchParams.has('edit')) {
+                url.searchParams.delete('edit');
+                window.history.replaceState({}, '', url.toString());
+            }
         }
-    }
-</script>
 
-</body>
-</html>
+        function lihatPassword(id) {
+            const password = document.getElementById('password-' + id);
+            const button = document.getElementById('button-' + id);
+
+            if (password.textContent.trim() === '••••••••') {
+                password.textContent = password.dataset.password;
+                button.classList.add('password-visible');
+                button.setAttribute('aria-label', 'Sembunyikan password');
+            } else {
+                password.textContent = '••••••••';
+                button.classList.remove('password-visible');
+                button.setAttribute('aria-label', 'Lihat password');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const userIdDariError = editUserId.value;
+
+            if (userIdDariError) {
+                bukaEditUser(userIdDariError, { pertahankanNilai: true });
+                return;
+            }
+
+            const editId = new URLSearchParams(window.location.search).get('edit');
+
+            if (editId) {
+                bukaEditUser(editId);
+            }
+        });
+    </script>
+@endpush

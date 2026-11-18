@@ -125,7 +125,8 @@ Route::post('/signup', function (Request $request) {
 });
 
 Route::get('/transaksi', [TransaksiController::class, 'index'])
-    ->middleware('auth');
+    ->middleware('auth')
+    ->name('transaksi.index');
 
 Route::post('/transaksi', [TransaksiController::class, 'store'])
     ->middleware('auth')
@@ -163,7 +164,8 @@ Route::get('/omzet', [TransaksiController::class, 'omzet'])
     ->middleware('auth');
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
-    ->middleware('admin');
+    ->middleware('admin')
+    ->name('admin.dashboard');
 
 Route::get('/admin/users', [AdminController::class, 'users'])
     ->middleware('admin')

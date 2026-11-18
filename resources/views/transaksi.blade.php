@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0F2A43">
-    <title>ProfitPilot - Transaksi</title>
+    <title>ProfitPilot — Transaksi</title>
+
+    @include('partials.favicon')
     <link rel="stylesheet" href="{{ asset('css/transaksi.css') }}">
 </head>
 <body>
@@ -327,7 +329,7 @@
             </form>
         </section>
 
-        <section class="transaction">
+        <section class="transaction" id="riwayat-transaksi">
             <div class="section-header">
                 <div>
                     <h2>Riwayat Transaksi</h2>
@@ -335,6 +337,99 @@
                 </div>
                 <span class="history-count">{{ $transaksi->count() }} transaksi</span>
             </div>
+
+            <form method="GET" action="{{ route('transaksi.index') }}"
+                  class="history-filter" id="historyFilter">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="periode">Tampilkan</label>
+                        <select name="periode" id="periode">
+                            <option value="semua" @selected($periode === 'semua')>
+                                Semua Transaksi
+                            </option>
+                            <option value="mingguan" @selected($periode === 'mingguan')>
+                                Per Minggu
+                            </option>
+                            <option value="bulanan" @selected($periode === 'bulanan')>
+                                Per Bulan
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group" data-filter="mingguan"
+                         @if ($periode !== 'mingguan') hidden @endif>
+                        <label for="minggu">Pilih Minggu</label>
+                        <select name="minggu" id="minggu"
+                                @disabled($periode !== 'mingguan')>
+                            @foreach ($mingguOptions as $option)
+                                <option value="{{ $option['value'] }}"
+                                        @selected($minggu === $option['value'])>
+                                    {{ $option['label'] }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="filter-group" data-filter="bulanan"
+                         @if ($periode !== 'bulanan') hidden @endif>
+                        <label for="bulan">Pilih Bulan</label>
+                        <select name="bulan" id="bulan"
+                                @disabled($periode !== 'bulanan')>
+                            @foreach ($bulanOptions as $option)
+                                <option value="{{ $option['value'] }}"
+                                        @selected($bulan === $option['value'])>
+                                    {{ $option['label'] }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button type="submit" class="filter-apply">Terapkan</button>
+
+                        @if ($periode !== 'semua')
+                            <a href="{{ route('transaksi.index') }}"
+                               class="filter-reset">
+                                Reset
+                            </a>
+                        @endif
+                    </div>
+                </div>
+
+                <p class="filter-hint">
+                    Pilih periode dan waktu, lalu klik Terapkan.
+                </p>
+            </form>
+
+            @if ($periode !== 'semua')
+                <div class="period-summary">
+                    <div class="period-summary-header">
+                        <span class="period-chip">{{ $labelPeriode }}</span>
+                        <span class="period-caption">
+                            Ringkasan transaksi aktif pada periode ini
+                        </span>
+                    </div>
+
+                    <div class="period-summary-grid">
+                        <div class="period-stat period-income">
+                            <span>Pemasukan</span>
+                            <strong>Rp {{ number_format($pemasukanPeriode, 0, ',', '.') }}</strong>
+                        </div>
+
+                        <div class="period-stat period-expense">
+                            <span>Pengeluaran</span>
+                            <strong>Rp {{ number_format($pengeluaranPeriode, 0, ',', '.') }}</strong>
+                        </div>
+
+                        <div class="period-stat period-net">
+                            <span>Saldo Periode</span>
+                            <strong @class(['negative' => $omzetPeriode < 0])>
+                                Rp {{ number_format($omzetPeriode, 0, ',', '.') }}
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+            @endif
 
             <div class="table-wrapper">
                 <table>
@@ -402,6 +497,15 @@
                                         >
                                             @csrf
                                             @method('DELETE')
+
+                                            @if ($periode === 'mingguan')
+                                                <input type="hidden" name="periode" value="mingguan">
+                                                <input type="hidden" name="minggu" value="{{ $minggu }}">
+                                            @elseif ($periode === 'bulanan')
+                                                <input type="hidden" name="periode" value="bulanan">
+                                                <input type="hidden" name="bulan" value="{{ $bulan }}">
+                                            @endif
+
                                             <button type="submit" class="cancel-button">Batalkan</button>
                                         </form>
                                     @else
@@ -413,8 +517,21 @@
                             <tr>
                                 <td colspan="7" class="empty">
                                     <span class="empty-icon">▤</span>
-                                    <strong>Belum ada transaksi</strong>
-                                    <span>Transaksi kamu akan muncul di sini.</span>
+
+                                    @if ($periode !== 'semua')
+                                        <strong>Tidak ada transaksi pada periode ini</strong>
+                                        <span>
+                                            Coba pilih minggu atau bulan lain,
+                                            atau tampilkan semua transaksi.
+                                        </span>
+                                        <a href="{{ route('transaksi.index') }}"
+                                           class="empty-reset">
+                                            Tampilkan semua transaksi
+                                        </a>
+                                    @else
+                                        <strong>Belum ada transaksi</strong>
+                                        <span>Transaksi kamu akan muncul di sini.</span>
+                                    @endif
                                 </td>
                             </tr>
                         @endforelse
@@ -429,6 +546,40 @@
     </main>
 </div>
 
+<div class="stock-modal" id="stockModal" role="alertdialog" aria-modal="true"
+     aria-labelledby="stockModalTitle" aria-describedby="stockModalMessage" hidden>
+    <div class="stock-modal-backdrop" data-close-stock-modal></div>
+
+    <div class="stock-modal-card">
+        <span class="stock-modal-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3 2.6 20h18.8L12 3Z"/>
+                <path d="M12 9v5"/>
+                <path d="M12 17.5h.01"/>
+            </svg>
+        </span>
+
+        <button type="button" class="stock-modal-close" data-close-stock-modal
+                aria-label="Tutup peringatan">&times;</button>
+
+        <h2 id="stockModalTitle">Stok barang tidak mencukupi</h2>
+
+        <p id="stockModalMessage">
+            Jumlah barang yang kamu masukkan melebihi stok yang tersedia.
+            Kurangi jumlahnya sebelum menyimpan transaksi.
+        </p>
+
+        <ul class="stock-modal-list" id="stockModalList"></ul>
+
+        <div class="stock-modal-actions">
+            <button type="button" class="stock-modal-button" data-close-stock-modal>
+                Mengerti
+            </button>
+        </div>
+    </div>
+</div>
+
 <script>
     const barang = @json($barang);
 
@@ -441,10 +592,193 @@
     const totalPenjualan = document.getElementById('totalPenjualan');
     const tambahBarang = document.getElementById('tambahBarang');
     const transaksiForm = document.getElementById('transaksiForm');
+    const historyFilter = document.getElementById('historyFilter');
+    const periodeFilter = document.getElementById('periode');
+    const stockModal = document.getElementById('stockModal');
+    const stockModalList = document.getElementById('stockModalList');
+    const stockModalMessage = document.getElementById('stockModalMessage');
+    let stockModalTrigger = null;
+
+    if (historyFilter && periodeFilter) {
+        const filterScrollKey = 'profilpilot:transaksi-scroll';
+        const filterGroups = historyFilter.querySelectorAll('[data-filter]');
+
+        function syncFilterFields() {
+            filterGroups.forEach(function (group) {
+                const selected = group.dataset.filter === periodeFilter.value;
+                const select = group.querySelector('select');
+
+                group.hidden = !selected;
+
+                if (select) {
+                    select.disabled = !selected;
+                }
+            });
+        }
+
+        function saveFilterScroll() {
+            try {
+                sessionStorage.setItem(filterScrollKey, String(window.scrollY));
+            } catch (error) {
+                // sessionStorage bisa diblokir browser.
+            }
+        }
+
+        function restoreFilterScroll() {
+            try {
+                const saved = sessionStorage.getItem(filterScrollKey);
+
+                if (saved === null) {
+                    return;
+                }
+
+                sessionStorage.removeItem(filterScrollKey);
+
+                const scrollY = Number(saved);
+
+                if (! Number.isFinite(scrollY) || scrollY <= 0) {
+                    return;
+                }
+
+                window.scrollTo(0, scrollY);
+
+                window.addEventListener('load', function () {
+                    window.scrollTo(0, scrollY);
+                }, { once: true });
+            } catch (error) {
+                // sessionStorage bisa diblokir browser.
+            }
+        }
+
+        periodeFilter.addEventListener('change', syncFilterFields);
+        historyFilter.addEventListener('submit', saveFilterScroll);
+
+        document.querySelectorAll('.filter-reset, .empty-reset').forEach(function (link) {
+            link.addEventListener('click', saveFilterScroll);
+        });
+
+        syncFilterFields();
+        restoreFilterScroll();
+    }
 
     function rupiah(angka) {
         return new Intl.NumberFormat('id-ID').format(angka);
     }
+
+    function getStockShortages() {
+        const requested = {};
+
+        Array.from(itemsContainer.children).forEach(function (row) {
+            const select = row.querySelector('select');
+            const qty = row.querySelector('input');
+
+            if (! select || ! qty || ! select.value) {
+                return;
+            }
+
+            const option = select.options[select.selectedIndex];
+            const id = String(select.value);
+            const jumlah = Number(qty.value || 0);
+
+            if (! requested[id]) {
+                requested[id] = {
+                    nama: option.dataset.nama || option.textContent,
+                    stok: Number(option.dataset.stok || 0),
+                    jumlah: 0,
+                };
+            }
+
+            requested[id].jumlah += jumlah;
+        });
+
+        return Object.values(requested).filter(function (item) {
+            return item.jumlah > item.stok;
+        });
+    }
+
+    function openStockModal() {
+        stockModalTrigger = document.activeElement;
+        stockModal.hidden = false;
+        document.body.classList.add('stock-modal-open');
+        stockModal.querySelector('.stock-modal-button').focus();
+    }
+
+    function closeStockModal() {
+        if (stockModal.hidden) {
+            return;
+        }
+
+        stockModal.hidden = true;
+        document.body.classList.remove('stock-modal-open');
+
+        if (stockModalTrigger && typeof stockModalTrigger.focus === 'function') {
+            stockModalTrigger.focus();
+        }
+    }
+
+    function showStockWarning(shortages) {
+        stockModalMessage.textContent = 'Jumlah barang yang kamu masukkan melebihi stok yang tersedia. Kurangi jumlahnya sebelum menyimpan transaksi.';
+        stockModalList.innerHTML = '';
+
+        shortages.forEach(function (item) {
+            const row = document.createElement('li');
+            const name = document.createElement('strong');
+
+            name.textContent = item.nama;
+
+            row.append(
+                name,
+                document.createTextNode(
+                    ` — diminta ${rupiah(item.jumlah)}, stok tersedia ${rupiah(item.stok)}.`
+                )
+            );
+
+            stockModalList.appendChild(row);
+        });
+
+        openStockModal();
+    }
+
+    function showServerStockWarning(messages) {
+        stockModalMessage.textContent = 'Transaksi belum disimpan karena jumlah barang melebihi stok yang tersedia.';
+        stockModalList.innerHTML = '';
+
+        messages.forEach(function (message) {
+            const row = document.createElement('li');
+            row.textContent = message;
+            stockModalList.appendChild(row);
+        });
+
+        openStockModal();
+    }
+
+    stockModal.addEventListener('click', function (event) {
+        if (event.target.closest('[data-close-stock-modal]')) {
+            closeStockModal();
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && ! stockModal.hidden) {
+            closeStockModal();
+        }
+    });
+
+    transaksiForm.addEventListener('submit', function (event) {
+        const penjualan = jenis.value === 'pemasukan'
+            && modePemasukan.value === 'barang';
+
+        if (! penjualan) {
+            return;
+        }
+
+        const shortages = getStockShortages();
+
+        if (shortages.length > 0) {
+            event.preventDefault();
+            showStockWarning(shortages);
+        }
+    });
 
     function updateJenis() {
         const pemasukan = jenis.value === 'pemasukan';
@@ -505,6 +839,7 @@
             option.textContent = `${item.nama_barang} — Rp ${rupiah(Number(item.harga))} (Stok: ${item.stok})`;
             option.dataset.harga = Number(item.harga);
             option.dataset.stok = Number(item.stok);
+            option.dataset.nama = item.nama_barang;
             select.appendChild(option);
         });
 
@@ -541,13 +876,7 @@
             hitungTotal();
         });
 
-        select.addEventListener('change', () => {
-            const option = select.options[select.selectedIndex];
-            const stok = Number(option.dataset.stok || 0);
-
-            qty.max = stok > 0 ? String(stok) : '0';
-            hitungTotal();
-        });
+        select.addEventListener('change', hitungTotal);
 
         qty.addEventListener('input', hitungTotal);
 
@@ -640,6 +969,17 @@
     });
 
     updateJenis();
+
+    const serverErrors = @json($errors->all());
+    const serverStockErrors = serverErrors.filter(function (message) {
+        return typeof message === 'string'
+            && message.includes('Stok ')
+            && message.includes('tidak mencukupi');
+    });
+
+    if (serverStockErrors.length > 0) {
+        showServerStockWarning(serverStockErrors);
+    }
 </script>
 
 </body>

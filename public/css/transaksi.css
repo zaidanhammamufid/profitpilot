@@ -296,6 +296,189 @@
     white-space: nowrap;
 }
 
+.history-filter {
+    margin-bottom: 18px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.filter-row {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.filter-group {
+    display: flex;
+    flex: 1 1 190px;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.filter-group[hidden] {
+    display: none;
+}
+
+.filter-group label {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.filter-group select {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 34px 9px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    color: var(--text);
+    background-color: var(--white);
+    font-size: 13px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.filter-group select:focus {
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 3px rgba(37, 99, 166, 0.1);
+}
+
+.filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-apply,
+.filter-reset {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 16px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.filter-apply {
+    border: 1px solid var(--navy);
+    color: var(--white);
+    background: var(--navy);
+}
+
+.filter-apply:hover {
+    border-color: var(--navy-light);
+    background: var(--navy-light);
+}
+
+.filter-reset {
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--white);
+}
+
+.filter-reset:hover {
+    color: var(--text);
+    background: #f1f5f9;
+}
+
+.filter-hint {
+    margin: 11px 0 0;
+    color: #94a3b8;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.period-summary {
+    margin-bottom: 18px;
+    padding: 16px;
+    border: 1px solid #bfdbfe;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #eff6ff 0%, #f8fbff 100%);
+}
+
+.period-summary-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 13px;
+}
+
+.period-chip {
+    display: inline-block;
+    padding: 6px 11px;
+    border: 1px solid #bfdbfe;
+    border-radius: 20px;
+    color: #1d4f91;
+    background: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.period-caption {
+    color: var(--muted);
+    font-size: 11.5px;
+}
+
+.period-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.period-stat {
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--white);
+}
+
+.period-stat span {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.period-stat strong {
+    color: var(--text);
+    font-size: 16px;
+    overflow-wrap: anywhere;
+}
+
+.period-income strong {
+    color: #047857;
+}
+
+.period-expense strong {
+    color: #b91c1c;
+}
+
+.period-net strong {
+    color: var(--navy);
+}
+
+.period-net strong.negative {
+    color: #b91c1c;
+}
+
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -450,6 +633,23 @@
     font-size: 12px;
 }
 
+.empty-reset {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 9px 13px;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    color: #1d4f91;
+    background: #eff6ff;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.empty-reset:hover {
+    background: #dbeafe;
+}
+
 .alert {
     margin-bottom: 22px;
     padding: 15px 18px;
@@ -501,6 +701,162 @@
     padding-left: 20px;
 }
 
+/* Popup peringatan stok */
+.stock-modal[hidden] {
+    display: none;
+}
+
+.stock-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.stock-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(2px);
+}
+
+.stock-modal-card {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 470px);
+    max-height: calc(100vh - 48px);
+    padding: 28px;
+    overflow-y: auto;
+    border-radius: 18px;
+    background: var(--white);
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.3);
+    animation: stock-modal-in 0.18s ease-out;
+}
+
+.stock-modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 16px;
+    border-radius: 15px;
+    color: #b91c1c;
+    background: #fee2e2;
+}
+
+.stock-modal-icon svg {
+    width: 27px;
+    height: 27px;
+}
+
+.stock-modal-card h2 {
+    margin: 0 0 9px;
+    padding-right: 28px;
+    color: #991b1b;
+    font-size: 20px;
+}
+
+.stock-modal-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.65;
+}
+
+.stock-modal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 190px;
+    margin: 16px 0 0;
+    padding: 0;
+    overflow-y: auto;
+    list-style: none;
+}
+
+.stock-modal-list li {
+    padding: 11px 13px;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    color: #991b1b;
+    background: #fef2f2;
+    font-size: 12.5px;
+    line-height: 1.55;
+}
+
+.stock-modal-list strong {
+    color: #7f1d1d;
+}
+
+.stock-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 9px;
+    color: var(--muted);
+    background: transparent;
+    font-size: 22px;
+    line-height: 1;
+}
+
+.stock-modal-close:hover {
+    color: var(--text);
+    background: #f1f5f9;
+}
+
+.stock-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 22px;
+}
+
+.stock-modal-button {
+    padding: 11px 22px;
+    border: 0;
+    border-radius: 10px;
+    color: var(--white);
+    background: var(--navy);
+    font-size: 13px;
+    font-weight: 700;
+    transition: background 0.2s ease;
+}
+
+.stock-modal-button:hover {
+    background: var(--navy-light);
+}
+
+.stock-modal-button:focus-visible,
+.stock-modal-close:focus-visible {
+    outline: 3px solid #bfdbfe;
+    outline-offset: 2px;
+}
+
+body.stock-modal-open {
+    overflow: hidden;
+}
+
+@keyframes stock-modal-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 @media (max-width: 1100px) {
     .form-card,
     .transaction {
@@ -513,6 +869,39 @@
 }
 
 @media (max-width: 560px) {
+    .stock-modal {
+        padding: 16px;
+    }
+
+    .stock-modal-card {
+        max-height: calc(100vh - 32px);
+        padding: 22px;
+        border-radius: 15px;
+    }
+
+    .stock-modal-icon {
+        width: 46px;
+        height: 46px;
+        margin-bottom: 14px;
+    }
+
+    .stock-modal-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .stock-modal-card h2 {
+        font-size: 18px;
+    }
+
+    .stock-modal-actions {
+        margin-top: 18px;
+    }
+
+    .stock-modal-button {
+        width: 100%;
+    }
+
     .form-card,
     .transaction {
         padding: 17px 13px;
@@ -584,6 +973,36 @@
 
     .history-count {
         font-size: 10px;
+    }
+
+    .history-filter,
+    .period-summary {
+        padding: 13px;
+    }
+
+    .filter-group {
+        flex-basis: 100%;
+    }
+
+    .filter-actions {
+        width: 100%;
+    }
+
+    .filter-apply,
+    .filter-reset {
+        flex: 1;
+    }
+
+    .filter-hint {
+        font-size: 10.5px;
+    }
+
+    .period-summary-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .period-stat strong {
+        font-size: 15px;
     }
 
     .table-wrapper th,
